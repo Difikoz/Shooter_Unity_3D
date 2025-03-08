@@ -8,7 +8,6 @@ namespace WinterUniverse
         [SerializeField] private Image _pawnIconImage;
         [SerializeField] private VitalityBarUI _healthBar;
         [SerializeField] private VitalityBarUI _energyBar;
-        [SerializeField] private VitalityBarUI _manaBar;
 
         private PawnController _pawn;
         private EffectsBarUI _effectsBar;
@@ -22,11 +21,9 @@ namespace WinterUniverse
             _pawnIconImage.sprite = GameManager.StaticInstance.ConfigsManager.GetVisual(_pawn.Data.Visual).Icon;
             _healthBar.Initialize();
             _energyBar.Initialize();
-            _manaBar.Initialize();
             _effectsBar.Initialize(_pawn);
             _pawn.Status.OnHealthChanged += _healthBar.SetValues;
             _pawn.Status.OnEnergyChanged += _energyBar.SetValues;
-            _pawn.Status.OnManaChanged += _manaBar.SetValues;
             _pawn.Status.RecalculateStats();
         }
 
@@ -35,7 +32,6 @@ namespace WinterUniverse
             _effectsBar.ResetComponent();
             _pawn.Status.OnHealthChanged -= _healthBar.SetValues;
             _pawn.Status.OnEnergyChanged -= _energyBar.SetValues;
-            _pawn.Status.OnManaChanged -= _manaBar.SetValues;
         }
     }
 }

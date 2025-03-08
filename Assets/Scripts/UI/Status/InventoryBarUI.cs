@@ -1,5 +1,4 @@
 using Lean.Pool;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ namespace WinterUniverse
         [SerializeField] private TMP_Text _infoBarNameText;
         [SerializeField] private TMP_Text _infoBarDescriptionText;
         [SerializeField] private WeaponSlotUI _weaponSlot;
-        [SerializeField] private List<ArmorSlotUI> _armorSlots = new();
+        [SerializeField] private ArmorSlotUI _armorSlot;
 
         public void Initialize()
         {
@@ -43,11 +42,8 @@ namespace WinterUniverse
 
         public void OnEquipmentChanged()
         {
-            _weaponSlot.Initialize(GameManager.StaticInstance.PlayerManager.Pawn.Equipment.GetWeaponInSlot());
-            foreach (ArmorSlotUI slot in _armorSlots)
-            {
-                slot.Initialize(GameManager.StaticInstance.PlayerManager.Pawn.Equipment.GetArmorInSlot(slot.Type.DisplayName));
-            }
+            _weaponSlot.Initialize(GameManager.StaticInstance.PlayerManager.Pawn.Equipment.WeaponSlot.Config);
+            _armorSlot.Initialize(GameManager.StaticInstance.PlayerManager.Pawn.Equipment.ArmorSlot.Config);
         }
 
         public void ShowFullInformation(ItemConfig config)

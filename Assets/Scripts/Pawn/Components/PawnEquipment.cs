@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WinterUniverse
@@ -10,27 +9,23 @@ namespace WinterUniverse
 
         private PawnController _pawn;
         private WeaponSlot _weaponSlot;
-        private List<ArmorSlot> _armorSlots = new();
+        private ArmorSlot _armorSlot;
 
         public WeaponSlot WeaponSlot => _weaponSlot;
-        public List<ArmorSlot> ArmorSlots => _armorSlots;
+        public ArmorSlot ArmorSlot => _armorSlot;
 
         public void Initialize()
         {
             _pawn = GetComponentInParent<PawnController>();
             _weaponSlot = GetComponentInChildren<WeaponSlot>();
-            ArmorSlot[] armorSlots = GetComponentsInChildren<ArmorSlot>();
-            foreach (ArmorSlot slot in armorSlots)
-            {
-                _armorSlots.Add(slot);
-                slot.Initialize();
-            }
+            _armorSlot = GetComponentInChildren<ArmorSlot>();
             _weaponSlot.Initialize();
+            _armorSlot.Initialize();
         }
 
         public void ResetComponent()
         {
-            _armorSlots.Clear();
+
         }
 
         public void EquipWeapon(WeaponItemConfig config, bool removeNewFromInventory = true, bool addOldToInventory = true)
@@ -73,23 +68,16 @@ namespace WinterUniverse
             {
                 return;
             }
-            foreach (ArmorSlot slot in _armorSlots)
+            if (removeNewFromInventory)
             {
-                if (slot.Type == config.ArmorType)
-                {
-                    if (removeNewFromInventory)
-                    {
-                        _pawn.Inventory.RemoveItem(config);
-                    }
-                    if (addOldToInventory && slot.Config != null)
-                    {
-                        _pawn.Inventory.AddItem(slot.Config);
-                    }
-                    slot.ChangeConfig(config);
-                    _pawn.StateHolder.SetState($"Equipped {slot.Type.DisplayName}", true);
-                    break;
-                }
+                _pawn.Inventory.RemoveItem(config);
             }
+            if (addOldToInventory && _armorSlot.Config != null)
+            {
+                _pawn.Inventory.AddItem(_armorSlot.Config);
+            }
+            _armorSlot.ChangeConfig(config);
+            _pawn.StateHolder.SetState($"Equipped Armor", true);
             //if (config.PlayAnimationOnUse)
             //{
             //    _pawn.Animator.PlayAction(config.AnimationOnUse);
@@ -97,58 +85,15 @@ namespace WinterUniverse
             OnEquipmentChanged?.Invoke();
         }
 
-        public void UnequipArmor(ArmorTypeConfig type, bool addOldToInventory = true)
+        public void UnequipArmor(bool addOldToInventory = true)
         {
-            UnequipArmor(type.DisplayName, addOldToInventory);
-        }
-
-        public void UnequipArmor(int index, bool addOldToInventory = true)
-        {
-            if (index >= _armorSlots.Count)
+            if (addOldToInventory && _armorSlot.Config != null)
             {
-                return;
+                _pawn.Inventory.AddItem(_armorSlot.Config);
             }
-            UnequipArmor(_armorSlots[index], addOldToInventory);
-        }
-
-        public void UnequipArmor(string type, bool addOldToInventory = true)
-        {
-            foreach (ArmorSlot slot in _armorSlots)
-            {
-                if (slot.Type.DisplayName == type)
-                {
-                    UnequipArmor(slot, addOldToInventory);
-                    break;
-                }
-            }
-        }
-
-        public void UnequipArmor(ArmorSlot slot, bool addOldToInventory = true)
-        {
-            if (addOldToInventory && slot.Config != null)
-            {
-                _pawn.Inventory.AddItem(slot.Config);
-            }
-            slot.ChangeConfig(null);
-            _pawn.StateHolder.SetState($"Equipped {slot.Type.DisplayName}", false);
+            _armorSlot.ChangeConfig(null);
+            _pawn.StateHolder.SetState($"Equipped Armor", false);
             OnEquipmentChanged?.Invoke();
-        }
-
-        public WeaponItemConfig GetWeaponInSlot()
-        {
-            return _weaponSlot.Config;
-        }
-
-        public ArmorItemConfig GetArmorInSlot(string type)
-        {
-            foreach (ArmorSlot slot in _armorSlots)
-            {
-                if (slot.Type.DisplayName == type)
-                {
-                    return slot.Config;
-                }
-            }
-            return null;
         }
     }
 }

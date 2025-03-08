@@ -6,17 +6,21 @@ namespace WinterUniverse
     [CreateAssetMenu(fileName = "Weapon", menuName = "Winter Universe/Item/New Weapon")]
     public class WeaponItemConfig : ItemConfig
     {
-        [SerializeField] private WeaponTypeConfig _weaponType;
-        [SerializeField] private float _attackMinRange = 1f;
-        [SerializeField] private float _attackMaxRange = 2f;
-        [SerializeField] private float _attackAngle = 10f;
+        [SerializeField] private float _fireRate = 300f;
+        [SerializeField] private float _range = 100f;
+        [SerializeField] private float _force = 250f;
+        [SerializeField] private float _spread = 5f;
+        [SerializeField] private float _energyConsumption = 5f;
+        [SerializeField] private int _projectilePerShot = 1;
         [SerializeField] private List<DamageType> _damageTypes = new();
         [SerializeField] private EquipmentData _equipmentData;
 
-        public WeaponTypeConfig WeaponType => _weaponType;
-        public float AttackMinRange => _attackMinRange;
-        public float AttackMaxRange => _attackMaxRange;
-        public float AttackAngle => _attackAngle;
+        public float FireRate => _fireRate;
+        public float Range => _range;
+        public float Force => _force;
+        public float Spread => _spread;
+        public float EnergyConsumption => _energyConsumption;
+        public int ProjectilePerShot => _projectilePerShot;
         public List<DamageType> DamageTypes => _damageTypes;
         public EquipmentData EquipmentData => _equipmentData;
 

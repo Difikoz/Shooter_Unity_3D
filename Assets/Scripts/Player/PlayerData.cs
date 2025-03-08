@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WinterUniverse
@@ -7,7 +6,7 @@ namespace WinterUniverse
     public class PlayerData
     {
         public string Weapon;
-        public List<string> Armors;
+        public string Armor;
         public SerializableDictionary<string, int> Stacks;
         public TransformValues Transform;
     }

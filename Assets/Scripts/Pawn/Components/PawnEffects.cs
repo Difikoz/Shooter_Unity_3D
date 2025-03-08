@@ -50,7 +50,6 @@ namespace WinterUniverse
         public void AddEffect(Effect effect)
         {
             _allEffects.Add(effect);
-            //OnEffectsChanged?.Invoke();
         }
 
         public void RemoveEffect(Effect effect)
@@ -59,7 +58,6 @@ namespace WinterUniverse
             {
                 _allEffects.Remove(effect);
             }
-            //OnEffectsChanged?.Invoke();
         }
 
         private void HandleEffects()

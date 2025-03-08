@@ -8,7 +8,6 @@ namespace WinterUniverse
     {
         public Action<float, float> OnHealthChanged;
         public Action<float, float> OnEnergyChanged;
-        public Action<float, float> OnManaChanged;
         public Action OnDied;
         public Action OnRevived;
         public Action OnStatsChanged;
@@ -19,85 +18,67 @@ namespace WinterUniverse
 
         private float _healthCurrent;
         private float _energyCurrent;
-        private float _manaCurrent;
         private Stat _healthMax;
         private Stat _healthRegeneration;
         private Stat _energyMax;
         private Stat _energyRegeneration;
-        private Stat _manaMax;
-        private Stat _manaRegeneration;
         private Stat _acceleration;
         private Stat _moveSpeed;
-        private Stat _rotateSpeed;
-        private Stat _attackSpeed;
         private Stat _damageDealt;
         private Stat _slicingDamage;
         private Stat _piercingDamage;
         private Stat _bluntDamage;
-        private Stat _fireDamage;
-        private Stat _waterDamage;
-        private Stat _airDamage;
-        private Stat _holyDamage;
-        private Stat _darknessDamage;
-        private Stat _acidDamage;
+        private Stat _thermalDamage;
+        private Stat _electricalDamage;
+        private Stat _chemicalDamage;
         private Stat _damageTaken;
         private Stat _slicingResistance;
         private Stat _piercingResistance;
         private Stat _bluntResistance;
-        private Stat _fireResistance;
-        private Stat _waterResistance;
-        private Stat _airResistance;
-        private Stat _holyResistance;
-        private Stat _darknessResistance;
-        private Stat _acidResistance;
+        private Stat _thermalResistance;
+        private Stat _electricalResistance;
+        private Stat _chemicalResistance;
         private Stat _hearRadius;
         private Stat _viewDistance;
         private Stat _viewAngle;
 
-        [SerializeField] private float _regenerationCooldown = 0.2f;
+        [SerializeField] private float _regenerationTickCooldown = 0.2f;
+        [SerializeField] private float _healthRegenerationDelayCooldown = 4f;
+        [SerializeField] private float _energyRegenerationDelayCooldown = 4f;
 
-        private float _regenerationTime;
+        private float _healthRegenerationCurrentTickTime;
+        private float _healthRegenerationCurrentDelayTime;
+        private float _energyRegenerationCurrentTickTime;
+        private float _energyRegenerationCurrentDelayTime;
 
         public List<Stat> Stats => _stats;
         public float HealthCurrent => _healthCurrent;
         public float EnergyCurrent => _energyCurrent;
-        public float ManaCurrent => _manaCurrent;
         public Stat HealthMax => _healthMax;
         public Stat HealthRegeneration => _healthRegeneration;
         public Stat EnergyMax => _energyMax;
         public Stat EnergyRegeneration => _energyRegeneration;
-        public Stat ManaMax => _manaMax;
-        public Stat ManaRegeneration => _manaRegeneration;
         public Stat Acceleration => _acceleration;
         public Stat MoveSpeed => _moveSpeed;
-        public Stat RotateSpeed => _rotateSpeed;
-        public Stat AttackSpeed => _attackSpeed;
         public Stat DamageDealt => _damageDealt;
         public Stat SlicingDamage => _slicingDamage;
         public Stat PiercingDamage => _piercingDamage;
         public Stat BluntDamage => _bluntDamage;
-        public Stat FireDamage => _fireDamage;
-        public Stat WaterDamage => _waterDamage;
-        public Stat AirDamage => _airDamage;
-        public Stat HolyDamage => _holyDamage;
-        public Stat DarknessDamage => _darknessDamage;
-        public Stat AcidDamage => _acidDamage;
+        public Stat ThermalDamage => _thermalDamage;
+        public Stat ElectricalDamage => _electricalDamage;
+        public Stat ChemicalDamage => _chemicalDamage;
         public Stat DamageTaken => _damageTaken;
         public Stat SlicingResistance => _slicingResistance;
         public Stat PiercingResistance => _piercingResistance;
         public Stat BluntResistance => _bluntResistance;
-        public Stat FireResistance => _fireResistance;
-        public Stat WaterResistance => _waterResistance;
-        public Stat AirResistance => _airResistance;
-        public Stat HolyResistance => _holyResistance;
-        public Stat DarknessResistance => _darknessResistance;
-        public Stat AcidResistance => _acidResistance;
+        public Stat ThermalResistance => _thermalResistance;
+        public Stat ElectricalResistance => _electricalResistance;
+        public Stat ChemicalResistance => _chemicalResistance;
         public Stat HearRadius => _hearRadius;
         public Stat ViewDistance => _viewDistance;
         public Stat ViewAngle => _viewAngle;
         public float HealthPercent => _healthCurrent / _healthMax.CurrentValue;
         public float EnergyPercent => _energyCurrent / _energyMax.CurrentValue;
-        public float ManaPercent => _manaCurrent / _manaMax.CurrentValue;
 
         public void Initialize()
         {
@@ -139,23 +120,11 @@ namespace WinterUniverse
                     case "Energy Regeneration":
                         _energyRegeneration = s;
                         break;
-                    case "Mana Max":
-                        _manaMax = s;
-                        break;
-                    case "Mana Regeneration":
-                        _manaRegeneration = s;
-                        break;
                     case "Acceleration":
                         _acceleration = s;
                         break;
                     case "Move Speed":
                         _moveSpeed = s;
-                        break;
-                    case "Rotate Speed":
-                        _rotateSpeed = s;
-                        break;
-                    case "Attack Speed":
-                        _attackSpeed = s;
                         break;
                     case "Slicing Damage":
                         _slicingDamage = s;
@@ -169,23 +138,14 @@ namespace WinterUniverse
                     case "Blunt Damage":
                         _bluntDamage = s;
                         break;
-                    case "Fire Damage":
-                        _fireDamage = s;
+                    case "Thermal Damage":
+                        _thermalDamage = s;
                         break;
-                    case "Water Damage":
-                        _waterDamage = s;
+                    case "Electrical Damage":
+                        _electricalDamage = s;
                         break;
-                    case "Air Damage":
-                        _airDamage = s;
-                        break;
-                    case "Holy Damage":
-                        _holyDamage = s;
-                        break;
-                    case "Darkness Damage":
-                        _darknessDamage = s;
-                        break;
-                    case "Acid Damage":
-                        _acidDamage = s;
+                    case "Chemical Damage":
+                        _chemicalDamage = s;
                         break;
                     case "Damage Taken":
                         _damageTaken = s;
@@ -199,23 +159,14 @@ namespace WinterUniverse
                     case "Blunt Resistance":
                         _bluntResistance = s;
                         break;
-                    case "Fire Resistance":
-                        _fireResistance = s;
+                    case "Thermal Resistance":
+                        _thermalResistance = s;
                         break;
-                    case "Water Resistance":
-                        _waterResistance = s;
+                    case "Electrical Resistance":
+                        _electricalResistance = s;
                         break;
-                    case "Air Resistance":
-                        _airResistance = s;
-                        break;
-                    case "Holy Resistance":
-                        _holyResistance = s;
-                        break;
-                    case "Darkness Resistance":
-                        _darknessResistance = s;
-                        break;
-                    case "Acid Resistance":
-                        _acidResistance = s;
+                    case "Chemical Resistance":
+                        _chemicalResistance = s;
                         break;
                     case "Hear Radius":
                         _hearRadius = s;
@@ -234,25 +185,44 @@ namespace WinterUniverse
         {
             _healthCurrent = Mathf.Clamp(_healthCurrent, 0f, _healthMax.CurrentValue);
             _energyCurrent = Mathf.Clamp(_energyCurrent, 0f, _energyMax.CurrentValue);
-            _manaCurrent = Mathf.Clamp(_manaCurrent, 0f, _manaMax.CurrentValue);
             OnHealthChanged?.Invoke(_healthCurrent, _healthMax.CurrentValue);
             OnEnergyChanged?.Invoke(_energyCurrent, _energyMax.CurrentValue);
-            OnManaChanged?.Invoke(_manaCurrent, _manaMax.CurrentValue);
             OnStatsChanged?.Invoke();
         }
 
         public void OnUpdate()
         {
-            if (_regenerationTime >= _regenerationCooldown)
+            if (_healthRegenerationCurrentDelayTime >= _healthRegenerationDelayCooldown)
             {
-                RestoreHealthCurrent(_healthRegeneration.CurrentValue * _regenerationCooldown);
-                RestoreEnergyCurrent(_energyRegeneration.CurrentValue * _regenerationCooldown);
-                RestoreManaCurrent(_manaRegeneration.CurrentValue * _regenerationCooldown);
-                _regenerationTime = 0f;
+                if (_healthRegenerationCurrentTickTime >= _regenerationTickCooldown)
+                {
+                    RestoreHealthCurrent(_healthRegeneration.CurrentValue * _regenerationTickCooldown);
+                    _healthRegenerationCurrentTickTime = 0f;
+                }
+                else
+                {
+                    _healthRegenerationCurrentTickTime += Time.deltaTime;
+                }
             }
             else
             {
-                _regenerationTime += Time.deltaTime;
+                _healthRegenerationCurrentDelayTime += Time.deltaTime;
+            }
+            if (_energyRegenerationCurrentDelayTime >= _energyRegenerationDelayCooldown)
+            {
+                if (_energyRegenerationCurrentTickTime >= _regenerationTickCooldown)
+                {
+                    RestoreEnergyCurrent(_energyRegeneration.CurrentValue * _regenerationTickCooldown);
+                    _energyRegenerationCurrentTickTime = 0f;
+                }
+                else
+                {
+                    _energyRegenerationCurrentTickTime += Time.deltaTime;
+                }
+            }
+            else
+            {
+                _energyRegenerationCurrentDelayTime += Time.deltaTime;
             }
         }
 
@@ -262,26 +232,21 @@ namespace WinterUniverse
             {
                 return;
             }
-            foreach (ArmorSlot slot in _pawn.Equipment.ArmorSlots)
+            if (_pawn.Equipment.ArmorSlot.Config != null && _pawn.Equipment.ArmorSlot.Config.EquipmentData.OwnerEffects.Count > 0)
             {
-                if (slot.Config != null && slot.Config.EquipmentData.OwnerEffects.Count > 0)
-                {
-                    _pawn.Effects.ApplyEffects(slot.Config.EquipmentData.OwnerEffects, _pawn);
-                }
+                _pawn.Effects.ApplyEffects(_pawn.Equipment.ArmorSlot.Config.EquipmentData.OwnerEffects, _pawn);
             }
             if (source != null)
             {
-                foreach (ArmorSlot slot in _pawn.Equipment.ArmorSlots)
+                if (_pawn.Equipment.ArmorSlot.Config != null && _pawn.Equipment.ArmorSlot.Config.EquipmentData.TargetEffects.Count > 0)
                 {
-                    if (slot.Config != null && slot.Config.EquipmentData.TargetEffects.Count > 0)
-                    {
-                        source.Effects.ApplyEffects(slot.Config.EquipmentData.TargetEffects, _pawn);
-                    }
+                    source.Effects.ApplyEffects(_pawn.Equipment.ArmorSlot.Config.EquipmentData.TargetEffects, _pawn);
                 }
             }
             float resistance = GetStat(type.ResistanceStat.DisplayName).CurrentValue;
             if (resistance < 100f)
             {
+                _healthRegenerationCurrentDelayTime = 0f;
                 value -= value * resistance / 100f;
                 value *= _damageTaken.CurrentValue / 100f;
                 _healthCurrent = Mathf.Clamp(_healthCurrent - value, 0f, _healthMax.CurrentValue);
@@ -319,6 +284,7 @@ namespace WinterUniverse
             {
                 return;
             }
+            _energyRegenerationCurrentDelayTime = 0f;
             _energyCurrent = Mathf.Clamp(_energyCurrent - value, 0f, _energyMax.CurrentValue);
             OnEnergyChanged?.Invoke(_energyCurrent, _energyMax.CurrentValue);
         }
@@ -333,26 +299,6 @@ namespace WinterUniverse
             OnEnergyChanged?.Invoke(_energyCurrent, _energyMax.CurrentValue);
         }
 
-        public void ReduceManaCurrent(float value)
-        {
-            if (_pawn.StateHolder.CompareStateValue("Is Dead", true) || value <= 0f)
-            {
-                return;
-            }
-            _manaCurrent = Mathf.Clamp(_manaCurrent - value, 0f, _manaMax.CurrentValue);
-            OnManaChanged?.Invoke(_manaCurrent, _manaMax.CurrentValue);
-        }
-
-        public void RestoreManaCurrent(float value)
-        {
-            if (_pawn.StateHolder.CompareStateValue("Is Dead", true) || value <= 0f)
-            {
-                return;
-            }
-            _manaCurrent = Mathf.Clamp(_manaCurrent + value, 0f, _manaMax.CurrentValue);
-            OnManaChanged?.Invoke(_manaCurrent, _manaMax.CurrentValue);
-        }
-
         private void Die(PawnController source = null)
         {
             if (_pawn.StateHolder.CompareStateValue("Is Dead", true))
@@ -365,10 +311,8 @@ namespace WinterUniverse
             }
             _healthCurrent = 0f;
             _energyCurrent = 0f;
-            _manaCurrent = 0f;
             OnHealthChanged?.Invoke(_healthCurrent, _healthMax.CurrentValue);
             OnEnergyChanged?.Invoke(_energyCurrent, _energyMax.CurrentValue);
-            OnManaChanged?.Invoke(_manaCurrent, _manaMax.CurrentValue);
             _pawn.StateHolder.SetState("Is Dead", true);
             _pawn.Animator.PlayAction("Death");
             OnDied?.Invoke();
@@ -380,7 +324,6 @@ namespace WinterUniverse
             _pawn.StateHolder.SetState("Is Dead", false);
             RestoreHealthCurrent(_healthMax.CurrentValue);
             RestoreEnergyCurrent(_energyMax.CurrentValue);
-            RestoreManaCurrent(_manaMax.CurrentValue);
             OnRevived?.Invoke();
         }
 

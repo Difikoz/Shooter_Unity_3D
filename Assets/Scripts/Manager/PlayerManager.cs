@@ -15,11 +15,6 @@ namespace WinterUniverse
 
         public PawnController Pawn => _pawn;
 
-        public void OnCursorPosition(InputValue value)
-        {
-            _cursorLocalPosition = value.Get<Vector2>();
-        }
-
         public void OnMoveToPosition()
         {
             if (GameManager.StaticInstance.InputMode == InputMode.UI)
@@ -31,68 +26,6 @@ namespace WinterUniverse
                 //_pawn.Locomotion.StopMovement();
                 //_pawn.Locomotion.SetDestination(_cameraHit.point);
             }
-        }
-
-        public void OnInteract()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            if (Physics.Raycast(_cameraRay, out _cameraHit, 1000f))
-            {
-                InteractableBase interactable = _cameraHit.transform.GetComponentInParent<InteractableBase>();
-                if (interactable != null)
-                {
-                    //_pawn.Locomotion.SetDestination(interactable);
-                }
-                else if (_cameraHit.transform.TryGetComponent(out interactable))
-                {
-                    //_pawn.Locomotion.SetDestination(interactable);
-                }
-            }
-        }
-
-        public void OnLockTarget()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            if (Physics.Raycast(_cameraRay, out _cameraHit, 1000f))
-            {
-                if (_cameraHit.transform.TryGetComponent(out PawnController pawn) && pawn != _pawn)
-                {
-                    _pawn.Combat.SetTarget(pawn);
-                }
-            }
-        }
-
-        public void OnFollowSelectedTarget()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            _pawn.Combat.FollowTarget();
-        }
-
-        public void OnAttackSelectedTarget()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            _pawn.Combat.AttackTarget();
-        }
-
-        public void OnResetSelectedTarget()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            _pawn.Combat.SetTarget(null);
         }
 
         public void Initialize()
@@ -126,14 +59,7 @@ namespace WinterUniverse
         public void SaveData(ref PlayerData data)
         {
             data.Weapon = _pawn.Equipment.WeaponSlot.Config != null ? _pawn.Equipment.WeaponSlot.Config.DisplayName : "Empty";
-            data.Armors = new();
-            foreach (ArmorSlot slot in _pawn.Equipment.ArmorSlots)
-            {
-                if (slot.Config != null)
-                {
-                    data.Armors.Add(slot.Config.DisplayName);
-                }
-            }
+            data.Armor = _pawn.Equipment.ArmorSlot.Config != null ? _pawn.Equipment.ArmorSlot.Config.DisplayName : "Empty";
             data.Stacks = new();
             foreach (ItemStack stack in _pawn.Inventory.Stacks)
             {
@@ -155,10 +81,7 @@ namespace WinterUniverse
             _pawn.transform.SetPositionAndRotation(data.Transform.GetPosition(), data.Transform.GetRotation());
             _pawn.Inventory.Initialize(data.Stacks);
             _pawn.Equipment.EquipWeapon(GameManager.StaticInstance.ConfigsManager.GetWeapon(data.Weapon), false, false);
-            foreach (string armor in data.Armors)
-            {
-                _pawn.Equipment.EquipArmor(GameManager.StaticInstance.ConfigsManager.GetArmor(armor), false, false);
-            }
+            _pawn.Equipment.EquipArmor(GameManager.StaticInstance.ConfigsManager.GetArmor(data.Armor), false, false);
         }
     }
 }

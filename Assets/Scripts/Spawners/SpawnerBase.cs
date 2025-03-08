@@ -8,7 +8,7 @@ namespace WinterUniverse
     {
         [SerializeField] protected List<Transform> _spawnPoints = new();
         [SerializeField] protected int _minAmount = 1;
-        [SerializeField] protected int _maxAmount = 1;
+        [SerializeField] protected int _maxAmount = 2;
         [SerializeField] private bool _repeatSpawn = true;
         [SerializeField] private float _spawnCooldown = 60f;
 
@@ -28,6 +28,7 @@ namespace WinterUniverse
 
         public void StartSpawn()
         {
+            StopSpawn();
             _spawnCoroutine = StartCoroutine(SpawnTimer());
         }
 

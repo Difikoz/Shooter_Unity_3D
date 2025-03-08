@@ -5,14 +5,12 @@ namespace WinterUniverse
 {
     public class ArmorSlot : MonoBehaviour
     {
-        [SerializeField] private ArmorTypeConfig _type;
-        [SerializeField] private List<ArmorRenderer> _armorRenderes = new();
+        [SerializeField] private List<ArmorRenderer> _armorRenderers = new();
 
         private PawnController _pawn;
         private ArmorItemConfig _config;
 
         public ArmorItemConfig Config => _config;
-        public ArmorTypeConfig Type => _type;
 
         public void Initialize()
         {
@@ -30,7 +28,7 @@ namespace WinterUniverse
             {
                 _pawn.Status.AddStatModifiers(_config.EquipmentData.Modifiers);
             }
-            foreach (ArmorRenderer ar in _armorRenderes)
+            foreach (ArmorRenderer ar in _armorRenderers)
             {
                 ar.Toggle(ar.Config == _config);
             }

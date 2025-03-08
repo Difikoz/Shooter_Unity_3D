@@ -186,7 +186,7 @@ namespace WinterUniverse
             return weapon != null;
         }
 
-        public bool GetArmor(string armoType, out ArmorItemConfig armor)
+        public bool GetArmor(out ArmorItemConfig armor)
         {
             armor = null;
             int price = 0;
@@ -194,18 +194,14 @@ namespace WinterUniverse
             {
                 if (stack.Item.ItemType == ItemType.Armor && stack.Item.Price > price)
                 {
-                    ArmorItemConfig item = (ArmorItemConfig)stack.Item;
-                    if (item.ArmorType.DisplayName == armoType)
-                    {
-                        armor = item;
-                        price = armor.Price;
-                    }
+                    armor = (ArmorItemConfig)stack.Item;
+                    price = armor.Price;
                 }
             }
             return armor != null;
         }
 
-        public bool GetConsumable(string consumableType, out ConsumableItemConfig consumable)
+        public bool GetConsumable(out ConsumableItemConfig consumable)
         {
             consumable = null;
             int price = 0;
@@ -213,12 +209,8 @@ namespace WinterUniverse
             {
                 if (stack.Item.ItemType == ItemType.Consumable && stack.Item.Price > price)
                 {
-                    ConsumableItemConfig item = (ConsumableItemConfig)stack.Item;
-                    if (item.ConsumableType.DisplayName == consumableType)
-                    {
-                        consumable = item;
-                        price = consumable.Price;
-                    }
+                    consumable = (ConsumableItemConfig)stack.Item;
+                    price = consumable.Price;
                 }
             }
             return consumable != null;

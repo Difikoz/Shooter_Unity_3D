@@ -8,10 +8,9 @@ namespace WinterUniverse
     {
         [SerializeField] private Button _thisButton;
         [SerializeField] private Image _iconImage;
-        [SerializeField] private ArmorTypeConfig _type;
+        [SerializeField] private Sprite _emptySprite;
 
         private ArmorItemConfig _armor;
-        public ArmorTypeConfig Type => _type;
 
         public void Initialize(ArmorItemConfig weapon)
         {
@@ -22,7 +21,7 @@ namespace WinterUniverse
             }
             else
             {
-                _iconImage.sprite = _type.Icon;
+                _iconImage.sprite = _emptySprite;
             }
         }
 
@@ -46,7 +45,7 @@ namespace WinterUniverse
             {
                 return;
             }
-            GameManager.StaticInstance.PlayerManager.Pawn.Equipment.UnequipArmor(_type);
+            GameManager.StaticInstance.PlayerManager.Pawn.Equipment.UnequipArmor();
         }
 
         public void OnSubmit(BaseEventData eventData)
@@ -55,7 +54,7 @@ namespace WinterUniverse
             {
                 return;
             }
-            GameManager.StaticInstance.PlayerManager.Pawn.Equipment.UnequipArmor(_type);
+            GameManager.StaticInstance.PlayerManager.Pawn.Equipment.UnequipArmor();
         }
     }
 }

@@ -173,16 +173,5 @@ namespace WinterUniverse
             }
             return closestPawn;
         }
-
-        //private void OnDrawGizmos()
-        //{
-        //    if (_pawn != null & _pawn.Status != null && _pawn.Status.Stats.Count > 0)
-        //    {
-        //        Gizmos.color = Color.red;
-        //        Gizmos.DrawWireSphere(transform.position, _pawn.Status.HearRadius.CurrentValue);
-        //        Gizmos.color = Color.yellow;
-        //        Gizmos.DrawWireSphere(transform.position, _pawn.Status.ViewDistance.CurrentValue);
-        //    }
-        //}
     }
 }

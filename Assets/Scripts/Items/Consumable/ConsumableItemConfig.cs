@@ -6,10 +6,8 @@ namespace WinterUniverse
     [CreateAssetMenu(fileName = "Consumable", menuName = "Winter Universe/Item/New Consumable")]
     public class ConsumableItemConfig : ItemConfig
     {
-        [SerializeField] private ConsumableTypeConfig _consumableType;
         [SerializeField] private List<EffectCreator> _effects = new();
 
-        public ConsumableTypeConfig ConsumableType => _consumableType;
         public List<EffectCreator> Effects => _effects;
 
         private void OnValidate()
