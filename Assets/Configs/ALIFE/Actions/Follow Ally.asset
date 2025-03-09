@@ -20,12 +20,32 @@ MonoBehaviour:
   _completeOnReachedDestination: 0
   _completeOnTimerEnd: 0
   _timerDuration: 0
-  _stopMovementOnAbort: 0
-  _stopMovementOnComplete: 0
-  _results: []
-  _conditionsToStart: []
-  _conditionsToAbort: []
-  _conditionsToComplete: []
+  _stopMovementOnAbort: 1
+  _stopMovementOnComplete: 1
+  _results:
+  - _config: {fileID: 11400000, guid: 38f4416c95a775946a6f1dd5491ddc66, type: 2}
+    _value: 1
+  _conditionsToStart:
+  - _config: {fileID: 11400000, guid: f297a9c337427564686872d79b6008b6, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: dfc7452a093befd438d95a00e229c1b8, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: f5d286a364c14d34fb548a48ace588fc, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: df87cef6876ac0747a64da0ca5984d4c, type: 2}
+    _value: 0
+  _conditionsToAbort:
+  - _config: {fileID: 11400000, guid: 0f057805e996db84e9427ad71a0e3b01, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: df87cef6876ac0747a64da0ca5984d4c, type: 2}
+    _value: 1
+  _conditionsToComplete:
+  - _config: {fileID: 11400000, guid: dfc7452a093befd438d95a00e229c1b8, type: 2}
+    _value: 0
   _effectsOnStart: []
   _effectsOnAbort: []
   _effectsOnComplete: []

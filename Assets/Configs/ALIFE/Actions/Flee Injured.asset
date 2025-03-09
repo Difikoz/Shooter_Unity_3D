@@ -17,14 +17,24 @@ MonoBehaviour:
   _playAnimationOnStart: 0
   _animationOnStart: 
   _completeOnAnimationEnd: 0
-  _completeOnReachedDestination: 0
+  _completeOnReachedDestination: 1
   _completeOnTimerEnd: 0
   _timerDuration: 0
   _stopMovementOnAbort: 0
   _stopMovementOnComplete: 0
-  _results: []
-  _conditionsToStart: []
-  _conditionsToAbort: []
+  _results:
+  - _config: {fileID: 11400000, guid: d2ec7413bb74a2d4d8d32a6e8f067dbf, type: 2}
+    _value: 1
+  _conditionsToStart:
+  - _config: {fileID: 11400000, guid: f297a9c337427564686872d79b6008b6, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 0f057805e996db84e9427ad71a0e3b01, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 1
+  _conditionsToAbort:
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 0
   _conditionsToComplete: []
   _effectsOnStart: []
   _effectsOnAbort: []

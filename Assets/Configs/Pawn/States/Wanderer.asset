@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: Wanderer
   m_EditorClassIdentifier: 
   _displayName: Wanderer
-  _statesToChange: []
+  _statesToChange:
+  - _config: {fileID: 11400000, guid: c3d7d58e9081545499f5b90d954743de, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: f297a9c337427564686872d79b6008b6, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 425c593455d185a4fb1a0e5080d146a6, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: da9bd89e9def5194799637f1cc43a758, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: 145a4133da269e645901a869f443d3c4, type: 2}
+    _value: 1

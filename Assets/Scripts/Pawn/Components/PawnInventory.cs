@@ -201,7 +201,7 @@ namespace WinterUniverse
             return armor != null;
         }
 
-        public bool GetConsumable(out ConsumableItemConfig consumable)
+        public bool GetConsumable(out ConsumableItemConfig consumable)// get best
         {
             consumable = null;
             int price = 0;
@@ -215,6 +215,21 @@ namespace WinterUniverse
             }
             return consumable != null;
         }
+
+        //public bool GetConsumable(out ConsumableItemConfig consumable)// get junk
+        //{
+        //    consumable = null;
+        //    int price = int.MaxValue;
+        //    foreach (ItemStack stack in _stacks)
+        //    {
+        //        if (stack.Item.ItemType == ItemType.Consumable && stack.Item.Price < price)
+        //        {
+        //            consumable = (ConsumableItemConfig)stack.Item;
+        //            price = consumable.Price;
+        //        }
+        //    }
+        //    return consumable != null;
+        //}
 
         public bool GetResource(string name, out ResourceItemConfig resource)
         {

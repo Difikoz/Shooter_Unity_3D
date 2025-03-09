@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Electrical Damage
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: -6762121703577019869, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
   _baseValue: 100
   _clampMinValue: 1
   _minValue: 0

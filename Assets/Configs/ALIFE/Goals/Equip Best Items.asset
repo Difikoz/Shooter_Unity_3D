@@ -19,3 +19,5 @@ MonoBehaviour:
     _value: 0
   - _config: {fileID: 11400000, guid: 88d638f018181474db709827cafd60b2, type: 2}
     _value: 0
+  - _config: {fileID: 11400000, guid: f5d286a364c14d34fb548a48ace588fc, type: 2}
+    _value: 0

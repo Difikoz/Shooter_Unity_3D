@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Loners
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: 1562558226133225774, guid: ec60298838ec8844ab0240e20e548663, type: 3}
   _memberName: Loner
   _relationships:
   - _faction: {fileID: 11400000}

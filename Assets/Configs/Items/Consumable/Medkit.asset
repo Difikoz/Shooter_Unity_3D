@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a0e02d2ee92c946a9ac80370f96cb5, type: 3}
+  m_Name: Medkit
+  m_EditorClassIdentifier: 
+  _displayName: Medkit
+  _description: Description
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: -5751289680115722612, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
+  _itemType: 2
+  _model: {fileID: 0}
+  _playAnimationOnUse: 1
+  _animationOnUse: Use Item
+  _stackSize: 10
+  _weight: 1
+  _price: 100
+  _effects:
+  - _chance: 0
+    _config: {fileID: 11400000, guid: 6ee09c24c88d7934eb8a3942b555582e, type: 2}
+    _value: 10
+    _duration: 4

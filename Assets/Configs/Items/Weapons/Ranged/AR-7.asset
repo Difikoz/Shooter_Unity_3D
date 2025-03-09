@@ -15,14 +15,14 @@ MonoBehaviour:
   _displayName: AR-7
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: 447091149110195888, guid: 76d1b102e125dd14497aab63370b0903, type: 3}
   _itemType: 0
   _model: {fileID: 3873096771375594778, guid: 559f4432df25851469056971bc1c1309, type: 3}
   _playAnimationOnUse: 1
   _animationOnUse: Swap Weapon
   _stackSize: 1
   _weight: 1
-  _price: 100
+  _price: 300
   _weaponTypePrefab: {fileID: 1969088306771676535, guid: 6547b4a52e2af404891e31022023638e, type: 3}
   _fireRate: 300
   _range: 100
@@ -30,8 +30,24 @@ MonoBehaviour:
   _spread: 5
   _energyConsumption: 5
   _projectilePerShot: 1
-  _damageTypes: []
+  _damageTypes:
+  - _damage: 10
+    _type: {fileID: 11400000, guid: e668641681974c542834d9a2ad30a0a1, type: 2}
+  - _damage: 2
+    _type: {fileID: 11400000, guid: eb2712dc0316605428ea24ebb374b817, type: 2}
   _equipmentData:
-    _modifiers: []
-    _ownerEffects: []
-    _targetEffects: []
+    _modifiers:
+    - _stat: {fileID: 11400000, guid: 0b60c487324e02e4e893fe014134f0b3, type: 2}
+      _modifier:
+        _type: 0
+        _value: -10
+    _ownerEffects:
+    - _chance: 0.1
+      _config: {fileID: 11400000, guid: 37a4541a1dd75634380038e61881c67f, type: 2}
+      _value: 1
+      _duration: 1
+    _targetEffects:
+    - _chance: 0.1
+      _config: {fileID: 11400000, guid: 9d1a1fe66e36e6b4584a9af6caf91291, type: 2}
+      _value: 1
+      _duration: 1

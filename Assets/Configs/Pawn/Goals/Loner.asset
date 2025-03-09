@@ -13,4 +13,18 @@ MonoBehaviour:
   m_Name: Loner
   m_EditorClassIdentifier: 
   _displayName: Loner
-  _goalsToAdd: []
+  _goalsToAdd:
+  - _config: {fileID: 11400000, guid: 204dbddec83a5404b9148319d5523e94, type: 2}
+    _priority: 0
+  - _config: {fileID: 11400000, guid: afffbd1116d5fc54cbfe0a7397f7ee16, type: 2}
+    _priority: 10
+  - _config: {fileID: 11400000, guid: a9968c213c42dac45af577cb4ba6e414, type: 2}
+    _priority: 20
+  - _config: {fileID: 11400000, guid: 57e6c149cbcef834bacdeebdb8aec8eb, type: 2}
+    _priority: 30
+  - _config: {fileID: 11400000, guid: e2d9a157ea765014988f8faf9d704d1e, type: 2}
+    _priority: 40
+  - _config: {fileID: 11400000, guid: 3c2253653fe06084186c2ef4492be65f, type: 2}
+    _priority: 50
+  - _config: {fileID: 11400000, guid: 3cd3be5d9a04a9246b24816e3e332ffb, type: 2}
+    _priority: 60

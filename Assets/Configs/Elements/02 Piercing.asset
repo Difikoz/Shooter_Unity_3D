@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Piercing
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: -1384884530459385338, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
   _damageStat: {fileID: 11400000, guid: 7f2ca4a3aac6757419b3ff0b6ffdc771, type: 2}
   _resistanceStat: {fileID: 11400000, guid: d339614ffc6d2f045a17643bfd591e28, type: 2}
   _hitVFX: []

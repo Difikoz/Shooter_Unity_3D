@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Blunt
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: -1384884530459385338, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
   _damageStat: {fileID: 11400000, guid: da291ec108c241a4f89da7beaa627ab2, type: 2}
   _resistanceStat: {fileID: 11400000, guid: cc8ee506bf8028a4a894f3e1ad07933c, type: 2}
   _hitVFX: []

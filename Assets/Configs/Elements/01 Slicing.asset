@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Slicing
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: -1384884530459385338, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
   _damageStat: {fileID: 11400000, guid: cec74a6428206bc45b7aa220fe3a7c4c, type: 2}
   _resistanceStat: {fileID: 11400000, guid: 9e72754a92404fb419117b1fac359da6, type: 2}
   _hitVFX: []

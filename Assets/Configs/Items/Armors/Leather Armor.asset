@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Leather Armor
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: 6768403224508111513, guid: 1a7e0882c7e9b844fba69001fcbe1c24, type: 3}
   _itemType: 1
   _model: {fileID: 0}
   _playAnimationOnUse: 1
@@ -24,6 +24,18 @@ MonoBehaviour:
   _weight: 1
   _price: 100
   _equipmentData:
-    _modifiers: []
-    _ownerEffects: []
-    _targetEffects: []
+    _modifiers:
+    - _stat: {fileID: 11400000, guid: 8101ea6e0ec8c6946bbd7a4f458f780e, type: 2}
+      _modifier:
+        _type: 1
+        _value: 10
+    _ownerEffects:
+    - _chance: 0.1
+      _config: {fileID: 11400000, guid: bf3e6bdfdf8bcd74aa5f80912c368742, type: 2}
+      _value: 2
+      _duration: 2
+    _targetEffects:
+    - _chance: 0.1
+      _config: {fileID: 11400000, guid: 37a4541a1dd75634380038e61881c67f, type: 2}
+      _value: -2
+      _duration: 2

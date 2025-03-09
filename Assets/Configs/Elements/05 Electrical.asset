@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Electrical
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: -1384884530459385338, guid: 22ae641dd4602e5419f550adfe6c5fc3, type: 3}
   _damageStat: {fileID: 11400000, guid: 4bd4f0e319d4df84e87532b27d6d2c46, type: 2}
   _resistanceStat: {fileID: 11400000, guid: 0324a01c7a2b6574b9b1f943479b3f12, type: 2}
   _hitVFX: []
