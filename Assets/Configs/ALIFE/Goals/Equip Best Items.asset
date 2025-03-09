@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2183620b9afe8c4428225b04e6977991, type: 3}
+  m_Name: Equip Best Items
+  m_EditorClassIdentifier: 
+  _displayName: Equip Best Items
+  _repeatable: 1
+  _requiredStates:
+  - _config: {fileID: 11400000, guid: 74da4b036f5cfe64fabdb07a99cf5c09, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: 88d638f018181474db709827cafd60b2, type: 2}
+    _value: 0

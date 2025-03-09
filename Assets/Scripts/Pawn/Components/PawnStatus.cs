@@ -22,7 +22,8 @@ namespace WinterUniverse
         private Stat _healthRegeneration;
         private Stat _energyMax;
         private Stat _energyRegeneration;
-        private Stat _moveSpeed;
+        private Stat _movementSpeed;
+        private Stat _attackSpeed;
         private Stat _damageDealt;
         private Stat _slicingDamage;
         private Stat _piercingDamage;
@@ -57,7 +58,8 @@ namespace WinterUniverse
         public Stat HealthRegeneration => _healthRegeneration;
         public Stat EnergyMax => _energyMax;
         public Stat EnergyRegeneration => _energyRegeneration;
-        public Stat MoveSpeed => _moveSpeed;
+        public Stat MovementSpeed => _movementSpeed;
+        public Stat AttackSpeed => _attackSpeed;
         public Stat DamageDealt => _damageDealt;
         public Stat SlicingDamage => _slicingDamage;
         public Stat PiercingDamage => _piercingDamage;
@@ -118,8 +120,11 @@ namespace WinterUniverse
                     case "Energy Regeneration":
                         _energyRegeneration = s;
                         break;
-                    case "Move Speed":
-                        _moveSpeed = s;
+                    case "Movement Speed":
+                        _movementSpeed = s;
+                        break;
+                    case "Attack Speed":
+                        _attackSpeed = s;
                         break;
                     case "Slicing Damage":
                         _slicingDamage = s;

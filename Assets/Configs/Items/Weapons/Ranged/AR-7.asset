@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331e42c1737e8b24c96a3c467c095b3a, type: 3}
+  m_Name: AR-7
+  m_EditorClassIdentifier: 
+  _displayName: AR-7
+  _description: Description
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: 0}
+  _itemType: 0
+  _model: {fileID: 3873096771375594778, guid: 559f4432df25851469056971bc1c1309, type: 3}
+  _playAnimationOnUse: 1
+  _animationOnUse: Swap Weapon
+  _stackSize: 1
+  _weight: 1
+  _price: 100
+  _weaponTypePrefab: {fileID: 1969088306771676535, guid: 6547b4a52e2af404891e31022023638e, type: 3}
+  _fireRate: 300
+  _range: 100
+  _force: 250
+  _spread: 5
+  _energyConsumption: 5
+  _projectilePerShot: 1
+  _damageTypes: []
+  _equipmentData:
+    _modifiers: []
+    _ownerEffects: []
+    _targetEffects: []

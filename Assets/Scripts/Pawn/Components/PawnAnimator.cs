@@ -34,7 +34,18 @@ namespace WinterUniverse
 
         public void OnUpdate()
         {
-            //_animator.SetFloat("Velocity", _pawn.Locomotion.Velocity);
+            _animator.SetFloat("ForwardVelocity", 100f);
+            _animator.SetFloat("RightVelocity", 100f);
+            _animator.SetFloat("TurnVelocity", 100f);
+            _animator.SetFloat("FallVelocity", 100f);
+            _animator.SetBool("Is Moving", _pawn.Input.MoveDirection.magnitude > 0.1f);
+            _animator.SetBool("Is Grounded", _pawn.StateHolder.CompareStateValue("Is Grounded", true));
+            _animator.SetBool("Is Aiming", _pawn.Input.AimInput);
+        }
+
+        public void SetFloat(string name, float value)
+        {
+            _animator.SetFloat(name, value);
         }
 
         public void PlayAction(string name, float fadeTime = 0.1f, bool isPerfomingAction = true)
@@ -48,6 +59,30 @@ namespace WinterUniverse
             if (_pawn != null && _pawn.StateHolder.HasState("Is Perfoming Action"))
             {
                 _pawn.StateHolder.SetState("Is Perfoming Action", false);
+            }
+        }
+
+        public void OpenDamageCollider()
+        {
+            if (_pawn.Equipment.WeaponSlot.Weapon != null)
+            {
+                _pawn.Equipment.WeaponSlot.Weapon.gameObject.SendMessage("EnableCollider");
+            }
+        }
+
+        public void CloseDamageCollider()
+        {
+            if (_pawn.Equipment.WeaponSlot.Weapon != null)
+            {
+                _pawn.Equipment.WeaponSlot.Weapon.gameObject.SendMessage("DisableCollider");
+            }
+        }
+
+        public void ClearDamagedTargets()
+        {
+            if (_pawn.Equipment.WeaponSlot.Weapon != null)
+            {
+                _pawn.Equipment.WeaponSlot.Weapon.gameObject.SendMessage("ClearTargets");
             }
         }
     }

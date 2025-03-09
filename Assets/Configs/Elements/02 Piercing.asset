@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848cde8abc3572d478cb140a3f9f40c6, type: 3}
+  m_Name: 02 Piercing
+  m_EditorClassIdentifier: 
+  _displayName: Piercing
+  _description: Description
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: 0}
+  _damageStat: {fileID: 11400000, guid: 7f2ca4a3aac6757419b3ff0b6ffdc771, type: 2}
+  _resistanceStat: {fileID: 11400000, guid: d339614ffc6d2f045a17643bfd591e28, type: 2}
+  _hitVFX: []
+  _hitClips: []

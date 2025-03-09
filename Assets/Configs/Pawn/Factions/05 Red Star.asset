@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5036e3af920871b41b45739bb524caa0, type: 3}
+  m_Name: 05 Red Star
+  m_EditorClassIdentifier: 
+  _displayName: Red Star
+  _description: Description
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: 0}
+  _memberName: Member
+  _relationships:
+  - _faction: {fileID: 11400000, guid: ec85a221fe42ffa498f67aae2ce90688, type: 2}
+    _state: 1
+  - _faction: {fileID: 11400000, guid: 0a8d9f001c3644343b921c2519ebd4d4, type: 2}
+    _state: 0
+  - _faction: {fileID: 11400000, guid: 18e7b6877993b0647a8a420a27d9046c, type: 2}
+    _state: 1
+  - _faction: {fileID: 11400000, guid: 001b90907befbb5468fbe5545592997f, type: 2}
+    _state: 0
+  - _faction: {fileID: 11400000}
+    _state: 2
+  - _faction: {fileID: 11400000, guid: c91bec556e083e243a48bf3fa4fc7a3e, type: 2}
+    _state: 0
+  - _faction: {fileID: 11400000, guid: 0903cf73403e3d448921efd1be50173a, type: 2}
+    _state: 1
+  - _faction: {fileID: 11400000, guid: c47ec55e0c4d75b4d9e3e089f1b9e412, type: 2}
+    _state: 0

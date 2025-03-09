@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3230105630791958687}
   m_Layer: 0
-  m_Name: Rifle Model
+  m_Name: AR-7 Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
