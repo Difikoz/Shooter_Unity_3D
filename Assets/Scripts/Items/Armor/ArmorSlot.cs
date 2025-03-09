@@ -5,6 +5,7 @@ namespace WinterUniverse
 {
     public class ArmorSlot : MonoBehaviour
     {
+        [SerializeField] private ArmorRenderer _defaultRenderer;
         [SerializeField] private List<ArmorRenderer> _armorRenderers = new();
 
         private PawnController _pawn;
@@ -15,6 +16,7 @@ namespace WinterUniverse
         public void Initialize()
         {
             _pawn = GetComponentInParent<PawnController>();
+            ChangeConfig(null);
         }
 
         public void ChangeConfig(ArmorItemConfig config)
@@ -27,6 +29,10 @@ namespace WinterUniverse
             if (_config != null)
             {
                 _pawn.Status.AddStatModifiers(_config.EquipmentData.Modifiers);
+            }
+            else
+            {
+                _defaultRenderer.Toggle(true);
             }
             foreach (ArmorRenderer ar in _armorRenderers)
             {

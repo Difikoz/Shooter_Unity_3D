@@ -21,7 +21,7 @@ namespace WinterUniverse
 
         public void Initialize()
         {
-            _pawn = GetComponentInParent<PawnController>();
+            _pawn = GetComponent<PawnController>();
         }
 
         public void OnUpdate()

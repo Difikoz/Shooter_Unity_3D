@@ -7,12 +7,14 @@ namespace WinterUniverse
         private PawnController _pawn;
         private Animator _animator;
 
+        [SerializeField] private Transform _aimBone;
         [SerializeField] private Transform _headPoint;
         [SerializeField] private Transform _eyesPoint;
         [SerializeField] private Transform _bodyPoint;
         [SerializeField] private float _height = 2f;
         [SerializeField] private float _radius = 0.5f;
 
+        public Transform AimBone => _aimBone;
         public Transform HeadPoint => _headPoint;
         public Transform EyesPoint => _eyesPoint;
         public Transform BodyPoint => _bodyPoint;

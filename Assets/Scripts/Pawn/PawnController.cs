@@ -51,7 +51,7 @@ namespace WinterUniverse
         private void GetComponents()
         {
             _animator = GetComponentInChildren<PawnAnimator>();
-            _combat = GetComponentInChildren<PawnCombat>();
+            _combat = GetComponent<PawnCombat>();
             _detection = GetComponent<PawnDetection>();
             _effects = GetComponent<PawnEffects>();
             _equipment = GetComponentInChildren<PawnEquipment>();
@@ -59,7 +59,7 @@ namespace WinterUniverse
             _input = GetComponent<PawnInput>();
             _inventory = GetComponent<PawnInventory>();
             _locomotion = GetComponent<PawnLocomotion>();
-            _sound = GetComponent<PawnSound>();
+            _sound = GetComponentInChildren<PawnSound>();
             _status = GetComponent<PawnStatus>();
         }
 

@@ -9,7 +9,7 @@ namespace WinterUniverse
         [SerializeField] private PlayerData _testPlayerData;
 
         private PawnController _pawn;
-        private Vector2 _cursorLocalPosition;
+        private Vector2 _moveInput;
         private Ray _cameraRay;
         private RaycastHit _cameraHit;
 
@@ -28,6 +28,26 @@ namespace WinterUniverse
             }
         }
 
+        public void OnMove(InputValue value)
+        {
+            _moveInput = value.Get<Vector2>();
+        }
+
+        public void OnInteract()
+        {
+
+        }
+
+        public void OnFire(InputValue value)
+        {
+            _pawn.Input.FireInput = value.isPressed;
+        }
+
+        public void OnAim(InputValue value)
+        {
+            _pawn.Input.AimInput = value.isPressed;
+        }
+
         public void Initialize()
         {
             Initialize(_testPawnData, _testPlayerData);
@@ -42,17 +62,17 @@ namespace WinterUniverse
         public void InitializePawn(PawnData data)
         {
             _pawn = GameManager.StaticInstance.PrefabsManager.GetPawn(transform);
-            //_pawn.Initialize(data);
+            _pawn.Create(data);
         }
 
         public void ResetComponent()
         {
-            //_pawn.ResetComponent();
+            _pawn.ResetComponents();
         }
 
         public void OnUpdate()
         {
-            _cameraRay = Camera.main.ScreenPointToRay(_cursorLocalPosition);
+            _pawn.Input.MoveDirection = GameManager.StaticInstance.CameraManager.transform.forward * _moveInput.y + GameManager.StaticInstance.CameraManager.transform.right * _moveInput.x;
             _pawn.OnUpdate();
         }
 

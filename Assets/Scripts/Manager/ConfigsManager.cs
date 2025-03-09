@@ -5,6 +5,7 @@ namespace WinterUniverse
 {
     public class ConfigsManager : MonoBehaviour
     {
+        [SerializeField] private float _gravity = -9.81f;
         [SerializeField] private List<VisualConfig> _visuals = new();
         [SerializeField] private List<FactionConfig> _factions = new();
         [SerializeField] private List<InventoryConfig> _inventories = new();
@@ -21,6 +22,7 @@ namespace WinterUniverse
 
         private List<ItemConfig> _items = new();
 
+        public float Gravity => _gravity;
         public List<VisualConfig> Visuals => _visuals;
         public List<FactionConfig> Factions => _factions;
         public List<InventoryConfig> Inventories => _inventories;

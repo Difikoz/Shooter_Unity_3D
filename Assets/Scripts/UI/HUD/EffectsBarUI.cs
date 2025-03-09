@@ -8,18 +8,15 @@ namespace WinterUniverse
         [SerializeField] private Transform _contentRoot;
         [SerializeField] private GameObject _slotPrefab;
 
-        private PawnController _pawn;
-
-        public void Initialize(PawnController pawn)
+        public void Initialize()
         {
-            _pawn = pawn;
-            _pawn.Effects.OnEffectsChanged += OnEffectsChanged;
+            GameManager.StaticInstance.PlayerManager.Pawn.Effects.OnEffectsChanged += OnEffectsChanged;
             OnEffectsChanged();
         }
 
         public void ResetComponent()
         {
-            _pawn.Effects.OnEffectsChanged -= OnEffectsChanged;
+            GameManager.StaticInstance.PlayerManager.Pawn.Effects.OnEffectsChanged -= OnEffectsChanged;
         }
 
         private void OnEffectsChanged()
@@ -28,7 +25,7 @@ namespace WinterUniverse
             {
                 LeanPool.Despawn(_contentRoot.GetChild(0).gameObject);
             }
-            foreach (Effect effect in _pawn.Effects.AllEffects)
+            foreach (Effect effect in GameManager.StaticInstance.PlayerManager.Pawn.Effects.AllEffects)
             {
                 LeanPool.Spawn(_slotPrefab, _contentRoot).GetComponent<EffectSlotUI>().Initialize(effect);
             }

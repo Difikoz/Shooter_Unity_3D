@@ -6,6 +6,7 @@ namespace WinterUniverse
     [CreateAssetMenu(fileName = "Weapon", menuName = "Winter Universe/Item/New Weapon")]
     public class WeaponItemConfig : ItemConfig
     {
+        [SerializeField] private GameObject _weaponTypePrefab;
         [SerializeField] private float _fireRate = 300f;
         [SerializeField] private float _range = 100f;
         [SerializeField] private float _force = 250f;
@@ -15,6 +16,7 @@ namespace WinterUniverse
         [SerializeField] private List<DamageType> _damageTypes = new();
         [SerializeField] private EquipmentData _equipmentData;
 
+        public GameObject WeaponTypePrefab => _weaponTypePrefab;
         public float FireRate => _fireRate;
         public float Range => _range;
         public float Force => _force;

@@ -7,11 +7,10 @@ namespace WinterUniverse
     {
         private PawnController _pawn;
         private WeaponItemConfig _config;
-        private GameObject _model;
-        private DamageCollider _damageCollider;
+        private Weapon _weapon;
 
         public WeaponItemConfig Config => _config;
-        public DamageCollider DamageCollider => _damageCollider;
+        public Weapon Weapon => _weapon;
 
         public void Initialize()
         {
@@ -23,16 +22,18 @@ namespace WinterUniverse
             if (_config != null)
             {
                 _pawn.Status.RemoveStatModifiers(_config.EquipmentData.Modifiers);
-                LeanPool.Despawn(_model);
-                _damageCollider = null;
+            }
+            if (_weapon != null)
+            {
+                LeanPool.Despawn(_weapon.gameObject);
+                _weapon = null;
             }
             _config = config;
             if (_config != null)
             {
                 _pawn.Status.AddStatModifiers(_config.EquipmentData.Modifiers);
-                _model = LeanPool.Spawn(_config.Model, transform);
-                _damageCollider = GetComponentInChildren<DamageCollider>();
-                _damageCollider.Initialize(_pawn, _config.DamageTypes, _config.EquipmentData.OwnerEffects, _config.EquipmentData.TargetEffects);
+                _weapon = LeanPool.Spawn(_config.WeaponTypePrefab, transform).GetComponent<Weapon>();
+                _weapon.Initialize(_config);
             }
         }
     }
