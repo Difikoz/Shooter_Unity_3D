@@ -30,10 +30,7 @@ namespace WinterUniverse
             {
                 _pawn.Status.AddStatModifiers(_config.EquipmentData.Modifiers);
             }
-            else
-            {
-                _defaultRenderer.Toggle(true);
-            }
+            _defaultRenderer.Toggle(_config == null);
             foreach (ArmorRenderer ar in _armorRenderers)
             {
                 ar.Toggle(ar.Config == _config);

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace WinterUniverse
 {
@@ -7,34 +6,19 @@ namespace WinterUniverse
     {
         [SerializeField] private PlayerConfig _playerConfig;
 
+        private PlayerInputActions _inputActions;
         private PawnController _pawn;
         private Vector2 _moveInput;
 
         public PawnController Pawn => _pawn;
 
-        public void OnMove(InputValue value)
-        {
-            _moveInput = value.Get<Vector2>();
-        }
-
-        public void OnInteract()
-        {
-
-        }
-
-        public void OnFire(InputValue value)
-        {
-            _pawn.Input.FireInput = value.isPressed;
-        }
-
-        public void OnAim(InputValue value)
-        {
-            _pawn.Input.AimInput = value.isPressed;
-        }
-
         public void Initialize()
         {
-            Initialize(_playerConfig.GetPawnData(), _playerConfig.GetPlayerData());
+            _inputActions = new();
+            _inputActions.Enable();
+            _inputActions.Player.Jump.performed += ctx => OnJump();
+            _inputActions.Player.Interact.performed += ctx => OnInteract();
+            Initialize(_playerConfig.GetPawnData(), _playerConfig.GetPlayerData());// for test
         }
 
         public void Initialize(PawnData pawnData, PlayerData playerData)
@@ -51,15 +35,47 @@ namespace WinterUniverse
 
         public void ResetComponent()
         {
+            _inputActions.Player.Jump.performed -= ctx => OnJump();
+            _inputActions.Player.Interact.performed -= ctx => OnInteract();
+            _inputActions.Disable();
             _pawn.ResetComponents();
         }
 
         public void OnUpdate()
         {
+            if (GameManager.StaticInstance.InputMode == InputMode.Game)
+            {
+                _moveInput = _inputActions.Player.Move.ReadValue<Vector2>();
+                _pawn.Input.FireInput = _inputActions.Player.Fire.IsPressed();
+                _pawn.Input.AimInput = _inputActions.Player.Aim.IsPressed();
+            }
+            else
+            {
+                _moveInput = Vector2.zero;
+                _pawn.Input.FireInput = false;
+                _pawn.Input.AimInput = false;
+            }
             _pawn.Input.MoveDirection = GameManager.StaticInstance.CameraManager.transform.forward * _moveInput.y + GameManager.StaticInstance.CameraManager.transform.right * _moveInput.x;
             _pawn.Input.LookDirection = GameManager.StaticInstance.CameraManager.transform.forward;
             _pawn.Input.LookPoint = GameManager.StaticInstance.CameraManager.GetHitPoint();
             _pawn.OnUpdate();
+        }
+
+        private void OnJump()
+        {
+            if (GameManager.StaticInstance.InputMode == InputMode.UI || _pawn == null)
+            {
+                return;
+            }
+            _pawn.Locomotion.Jump();
+        }
+
+        private void OnInteract()
+        {
+            if (GameManager.StaticInstance.InputMode == InputMode.UI || _pawn == null)
+            {
+                return;
+            }
         }
 
         public void SaveData(ref PlayerData data)

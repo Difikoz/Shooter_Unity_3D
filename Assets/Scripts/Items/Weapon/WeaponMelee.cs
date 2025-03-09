@@ -11,7 +11,7 @@ namespace WinterUniverse
             base.Initialize(config);
             _damageCollider = GetComponentInChildren<DamageCollider>();
             _damageCollider.Initialize(_pawn, _config.DamageTypes, _config.EquipmentData.OwnerEffects, _config.EquipmentData.TargetEffects);
-            _pawn.Animator.DisableLeftHandIK();
+            _pawn.Animator.ToggleLeftHandIK(null);
         }
 
         public override void OnFire()

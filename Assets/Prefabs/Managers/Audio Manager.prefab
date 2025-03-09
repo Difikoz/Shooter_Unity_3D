@@ -50,8 +50,9 @@ MonoBehaviour:
   _ambientSource: {fileID: 1209815852432431417}
   _soundSource: {fileID: 2571430191869034441}
   _ambientFadeSpeed: 0.5
-  _ambientClips: []
-  _errorClip: {fileID: 0}
+  _ambientClips:
+  - {fileID: 8300000, guid: 746c8a6ca513aa84796b748347788224, type: 3}
+  _errorClip: {fileID: 8300000, guid: a56a139ffa1f9784395f5bc3b2ed84ec, type: 3}
 --- !u!1 &1589408481868229789
 GameObject:
   m_ObjectHideFlags: 0

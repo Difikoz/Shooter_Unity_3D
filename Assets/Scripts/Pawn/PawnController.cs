@@ -5,7 +5,6 @@ namespace WinterUniverse
 {
     public class PawnController : MonoBehaviour
     {
-        private PawnData _data;
         private PawnAnimator _animator;
         private PawnCombat _combat;
         private PawnDetection _detection;
@@ -19,7 +18,6 @@ namespace WinterUniverse
         private PawnStatus _status;
         private StateHolder _stateHolder;
 
-        public PawnData Data => _data;
         public PawnAnimator Animator => _animator;
         public PawnCombat Combat => _combat;
         public PawnDetection Detection => _detection;
@@ -35,17 +33,9 @@ namespace WinterUniverse
 
         public void Create(PawnData data)
         {
-            _data = new()
-            {
-                DisplayName = data.DisplayName,
-                Visual = data.Visual,
-                Faction = data.Faction,
-                Inventory = data.Inventory,
-                StateHolder = data.StateHolder
-            };
-            LeanPool.Spawn(GameManager.StaticInstance.ConfigsManager.GetVisual(_data.Visual).Model, transform);
+            LeanPool.Spawn(GameManager.StaticInstance.ConfigsManager.GetVisual(data.Visual).Model, transform);
             GetComponents();
-            InitializeComponents();
+            InitializeComponents(data);
         }
 
         private void GetComponents()
@@ -63,14 +53,14 @@ namespace WinterUniverse
             _status = GetComponent<PawnStatus>();
         }
 
-        private void InitializeComponents()
+        private void InitializeComponents(PawnData data)
         {
             _stateHolder = new();
             foreach (StateConfig config in GameManager.StaticInstance.ConfigsManager.PawnStates)
             {
                 _stateHolder.SetState(config.ID, false);
             }
-            foreach (StateCreator creator in GameManager.StaticInstance.ConfigsManager.GetStateHolder(_data.StateHolder).StatesToChange)
+            foreach (StateCreator creator in GameManager.StaticInstance.ConfigsManager.GetStateHolder(data.StateHolder).StatesToChange)
             {
                 _stateHolder.SetState(creator.Config.ID, creator.Value);
             }
@@ -79,11 +69,11 @@ namespace WinterUniverse
             _detection.Initialize();
             _effects.Initialize();
             _equipment.Initialize();
-            _faction.Initialize();
+            _faction.Initialize(data);
             _input.Initialize();
-            _inventory.Initialize();
+            _inventory.Initialize(data);
             _locomotion.Initialize();
-            _sound.Initialize();
+            _sound.Initialize(data);
             _status.Initialize();
         }
 

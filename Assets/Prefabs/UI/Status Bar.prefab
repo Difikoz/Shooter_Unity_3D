@@ -3937,6 +3937,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 1666209453153053341, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
+      propertyPath: _group
+      value: 
+      objectReference: {fileID: 4564138436449849290}
     - target: {fileID: 1989767212371290293, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4054,6 +4058,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 1666209453153053341, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
+      propertyPath: _group
+      value: 
+      objectReference: {fileID: 4564138436449849290}
     - target: {fileID: 1989767212371290293, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4284,6 +4292,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Factions
       objectReference: {fileID: 0}
+    - target: {fileID: 1666209453153053341, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
+      propertyPath: _group
+      value: 
+      objectReference: {fileID: 4564138436449849290}
     - target: {fileID: 1989767212371290293, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4401,6 +4413,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Stats
       objectReference: {fileID: 0}
+    - target: {fileID: 1666209453153053341, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
+      propertyPath: _group
+      value: 
+      objectReference: {fileID: 4564138436449849290}
     - target: {fileID: 1989767212371290293, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4631,6 +4647,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 1666209453153053341, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
+      propertyPath: _group
+      value: 
+      objectReference: {fileID: 4564138436449849290}
     - target: {fileID: 1989767212371290293, guid: 6d1b0f0024098e046a99a80b46126b1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

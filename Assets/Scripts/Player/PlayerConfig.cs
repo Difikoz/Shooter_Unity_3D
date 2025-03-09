@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WinterUniverse
@@ -13,7 +12,6 @@ namespace WinterUniverse
         [SerializeField] private StateHolderConfig _stateHolder;
         [SerializeField] private WeaponItemConfig _weapon;
         [SerializeField] private ArmorItemConfig _armor;
-        [SerializeField] private List<ItemStack> _stacks = new();
 
         public PawnData GetPawnData()
         {
@@ -32,11 +30,12 @@ namespace WinterUniverse
         {
             PlayerData data = new()
             {
-                Weapon = _weapon.DisplayName,
-                Armor = _armor.DisplayName,
+                Weapon = _weapon != null ? _weapon.DisplayName : "Empty",
+                Armor = _armor != null ? _armor.DisplayName : "Empty",
                 Stacks = new(),
+                Transform = new(),
             };
-            foreach (ItemStack stack in _stacks)
+            foreach (ItemStack stack in _inventory.Stacks)
             {
                 if (data.Stacks.ContainsKey(stack.Item.DisplayName))
                 {

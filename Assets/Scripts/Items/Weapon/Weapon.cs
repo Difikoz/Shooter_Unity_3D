@@ -22,12 +22,13 @@ namespace WinterUniverse
             _leftHandTarget = GetComponentInChildren<LeftHandTarget>();
             if (_config.UseLeftHandIK)
             {
-                _pawn.Animator.EnableLeftHandIK(_leftHandTarget.transform);
+                _pawn.Animator.ToggleLeftHandIK(_leftHandTarget.transform);
             }
             else
             {
-                _pawn.Animator.DisableLeftHandIK();
+                _pawn.Animator.ToggleLeftHandIK(null);
             }
+            _pawn.Animator.ToggleAimingIK(_config.UseAiming);
         }
 
         public virtual bool CanFire()

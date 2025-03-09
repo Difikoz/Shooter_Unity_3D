@@ -13,11 +13,11 @@ namespace WinterUniverse
 
         public List<ItemStack> Stacks => _stacks;
 
-        public void Initialize()
+        public void Initialize(PawnData data)
         {
             _pawn = GetComponent<PawnController>();
             _stacks.Clear();
-            foreach (ItemStack stack in GameManager.StaticInstance.ConfigsManager.GetInventory(_pawn.Data.Inventory).Stacks)
+            foreach (ItemStack stack in GameManager.StaticInstance.ConfigsManager.GetInventory(data.Inventory).Stacks)
             {
                 AddItem(stack);
             }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace WinterUniverse
 {
@@ -15,6 +14,7 @@ namespace WinterUniverse
         [SerializeField] private float _collisionRadius = 0.25f;
         [SerializeField] private float _collisionAvoidanceSpeed = 8f;
 
+        private PlayerInputActions _inputActions;
         private PawnController _player;
         private Camera _camera;
         private Vector2 _lookInput;
@@ -27,13 +27,10 @@ namespace WinterUniverse
 
         public Camera Camera => _camera;
 
-        public void OnLook(InputValue value)
-        {
-            _lookInput = value.Get<Vector2>();
-        }
-
         public void Initialize()
         {
+            _inputActions = new();
+            _inputActions.Enable();
             _player = GameManager.StaticInstance.PlayerManager.Pawn;
             _camera = GetComponentInChildren<Camera>();
             _xRot = _rotateRoot.eulerAngles.x;
@@ -42,6 +39,7 @@ namespace WinterUniverse
 
         public void ResetComponent()
         {
+            _inputActions.Disable();
             _player = null;
         }
 
@@ -55,6 +53,7 @@ namespace WinterUniverse
             {
                 return;
             }
+            _lookInput = _inputActions.Camera.Look.ReadValue<Vector2>();
             LookAround();
             HandleCollision();
         }
@@ -67,7 +66,7 @@ namespace WinterUniverse
             }
             if (_lookInput.y != 0f)
             {
-                _xRot = Mathf.Clamp(_xRot - (_lookInput.y * _rotateSpeed * Time.deltaTime), _minAngle, _maxAngle);
+                _xRot = Mathf.Clamp(_xRot - (_lookInput.y * _rotateSpeed * Time.deltaTime), -_minAngle, _maxAngle);
                 _rotateRoot.localRotation = Quaternion.Euler(_xRot, 0f, 0f);
             }
         }

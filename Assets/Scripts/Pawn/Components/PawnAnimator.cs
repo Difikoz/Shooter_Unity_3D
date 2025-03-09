@@ -8,9 +8,13 @@ namespace WinterUniverse
     {
         private PawnController _pawn;
         private Animator _animator;
-        private Coroutine _rigCoroutine;
+        private Coroutine _aimRigCoroutine;
+        private Coroutine _leftHandRigCoroutine;
         private Transform _leftHandTarget;
+        private bool _useAiming;
 
+        [SerializeField] private bool _useRootMotion = true;
+        [SerializeField] private Rig _aimRig;
         [SerializeField] private Rig _leftHandRig;
         [SerializeField] private Transform _leftHandTargetIK;
         [SerializeField] private Transform _aimTarget;
@@ -19,12 +23,24 @@ namespace WinterUniverse
         [SerializeField] private Transform _bodyPoint;
         [SerializeField] private float _height = 2f;
         [SerializeField] private float _radius = 0.5f;
+        [SerializeField, Range(1f, 4f)] private float _acceleration = 2f;
+        [SerializeField, Range(1f, 4f)] private float _deceleration = 2f;
+        [SerializeField, Range(0.5f, 2f)] private float _rotateSpeed = 1f;
+        [SerializeField] private float _jumpForce = 2f;
+        [SerializeField] private float _turnAngle = 45f;
+        //[SerializeField] private float _basicMovementSpeed = 4f;
 
         public Transform HeadPoint => _headPoint;
         public Transform EyesPoint => _eyesPoint;
         public Transform BodyPoint => _bodyPoint;
         public float Height => _height;
         public float Radius => _radius;
+        public float Acceleration => _acceleration;
+        public float Deceleration => _deceleration;
+        public float RotateSpeed => _rotateSpeed;
+        public float JumpForce => _jumpForce;
+        public float TurnAngle => _turnAngle;
+        //public float BasicMovementSpeed => _basicMovementSpeed;
 
         public void Initialize()
         {
@@ -40,16 +56,26 @@ namespace WinterUniverse
         public void OnUpdate()
         {
             _aimTarget.position = _pawn.Input.LookPoint;
-            _animator.SetFloat("ForwardVelocity", _pawn.Input.ForwardVelocity);
-            _animator.SetFloat("RightVelocity", _pawn.Input.RightVelocity);
-            _animator.SetFloat("TurnVelocity", _pawn.Input.TurnVelocity);
-            _animator.SetFloat("FallVelocity", _pawn.Input.FallVelocity);
-            _animator.SetBool("Is Moving", _pawn.Input.MoveDirection.magnitude > 0.1f);
+            _animator.SetFloat("Forward Velocity", _pawn.Input.ForwardVelocity);
+            _animator.SetFloat("Right Velocity", _pawn.Input.RightVelocity);
+            _animator.SetFloat("Turn Velocity", _pawn.Input.TurnVelocity);
+            _animator.SetFloat("Fall Velocity", _pawn.Input.FallVelocity);
+            _animator.SetFloat("Movement Speed", _pawn.Status.MovementSpeed.CurrentValue / 100f);
+            _animator.SetBool("Is Moving", _pawn.Input.MoveVelocity.magnitude > 0.1f);
             _animator.SetBool("Is Grounded", _pawn.StateHolder.CompareStateValue("Is Grounded", true));
-            _animator.SetBool("Is Aiming", _pawn.Input.AimInput);
+            if (_pawn.Input.AimInput && _useAiming)
+            {
+                _animator.SetBool("Is Aiming", true);
+            }
+            else
+            {
+                _animator.SetBool("Is Aiming", false);
+            }
             if (_leftHandTarget != null)
             {
-                _leftHandTargetIK.position = Vector3.MoveTowards(_leftHandTargetIK.position, _leftHandTarget.position, Time.deltaTime);
+                _leftHandTargetIK.SetPositionAndRotation(_leftHandTarget.position, _leftHandTarget.rotation);
+                //_leftHandTargetIK.position = Vector3.MoveTowards(_leftHandTargetIK.position, _leftHandTarget.position, Time.deltaTime);
+                //_leftHandTargetIK.rotation = Quaternion.Slerp(_leftHandTargetIK.rotation, _leftHandTarget.rotation, Time.deltaTime);
             }
         }
 
@@ -72,34 +98,60 @@ namespace WinterUniverse
             }
         }
 
-        public void EnableLeftHandIK(Transform target)
+        public void ToggleAimingIK(bool enabled)
         {
-            if (_rigCoroutine != null)
+            if (_aimRigCoroutine != null)
             {
-                StopCoroutine(_rigCoroutine);
+                StopCoroutine(_aimRigCoroutine);
             }
-            _leftHandTarget = target;
-            _rigCoroutine = StartCoroutine(ChangeRigWeight(1f));
+            if (enabled)
+            {
+                _useAiming = true;
+                _aimRigCoroutine = StartCoroutine(ChangeAimRigWeight(1f));
+            }
+            else
+            {
+                _useAiming = false;
+                _aimRigCoroutine = StartCoroutine(ChangeAimRigWeight(0f));
+            }
         }
 
-        public void DisableLeftHandIK()
+        private IEnumerator ChangeAimRigWeight(float value)
         {
-            if (_rigCoroutine != null)
+            while (_aimRig.weight != value)
             {
-                StopCoroutine(_rigCoroutine);
+                _aimRig.weight = Mathf.MoveTowards(_leftHandRig.weight, value, Time.deltaTime);
+                yield return null;
             }
-            _leftHandTarget = null;
-            _rigCoroutine = StartCoroutine(ChangeRigWeight(0f));
+            _leftHandRigCoroutine = null;
         }
 
-        private IEnumerator ChangeRigWeight(float value)
+        public void ToggleLeftHandIK(Transform target)
+        {
+            if (_leftHandRigCoroutine != null)
+            {
+                StopCoroutine(_leftHandRigCoroutine);
+            }
+            if (target != null)
+            {
+                _leftHandTarget = target;
+                _leftHandRigCoroutine = StartCoroutine(ChangeLeftHandRigWeight(1f));
+            }
+            else
+            {
+                _leftHandTarget = null;
+                _leftHandRigCoroutine = StartCoroutine(ChangeLeftHandRigWeight(0f));
+            }
+        }
+
+        private IEnumerator ChangeLeftHandRigWeight(float value)
         {
             while (_leftHandRig.weight != value)
             {
                 _leftHandRig.weight = Mathf.MoveTowards(_leftHandRig.weight, value, Time.deltaTime);
                 yield return null;
             }
-            _rigCoroutine = null;
+            _leftHandRigCoroutine = null;
         }
 
         public void OpenDamageCollider()
@@ -123,6 +175,15 @@ namespace WinterUniverse
             if (_pawn.Equipment.WeaponSlot.Weapon != null)
             {
                 _pawn.Equipment.WeaponSlot.Weapon.gameObject.SendMessage("ClearTargets");
+            }
+        }
+
+        private void OnAnimatorMove()
+        {
+            if (_useRootMotion)
+            {
+                _pawn.Locomotion.AddForce(_animator.deltaPosition);
+                _pawn.Locomotion.AddForce(_animator.deltaRotation);
             }
         }
     }

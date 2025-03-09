@@ -17,8 +17,12 @@ MonoBehaviour:
   _voice: {fileID: 11400000, guid: ab2bc30163c60514994b5871cdb26411, type: 2}
   _inventory: {fileID: 11400000, guid: 3af2e182bc2f1b046b57cf37528a0805, type: 2}
   _stateHolder: {fileID: 11400000, guid: b6b5790b5db3687489af92517239596d, type: 2}
-  _weapon: {fileID: 11400000, guid: 887155776086d794caf98535ad0746a3, type: 2}
-  _armor: {fileID: 11400000, guid: 07798d59c9809de43bd9dd3d5c03919a, type: 2}
+  _weapon: {fileID: 0}
+  _armor: {fileID: 0}
   _stacks:
+  - _item: {fileID: 11400000, guid: 887155776086d794caf98535ad0746a3, type: 2}
+    _amount: 1
+  - _item: {fileID: 11400000, guid: 07798d59c9809de43bd9dd3d5c03919a, type: 2}
+    _amount: 1
   - _item: {fileID: 11400000, guid: 07b666d7f19c1a542b185fc28270f7dd, type: 2}
     _amount: 5

@@ -47,6 +47,8 @@ MonoBehaviour:
   _gravity: -9.81
   _visuals:
   - {fileID: 11400000, guid: a757acdee1e83e54caa2e34fe8d091d4, type: 2}
+  _voices:
+  - {fileID: 11400000, guid: ab2bc30163c60514994b5871cdb26411, type: 2}
   _factions:
   - {fileID: 11400000, guid: ec85a221fe42ffa498f67aae2ce90688, type: 2}
   - {fileID: 11400000, guid: 0a8d9f001c3644343b921c2519ebd4d4, type: 2}

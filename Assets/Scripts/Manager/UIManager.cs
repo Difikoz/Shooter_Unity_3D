@@ -4,6 +4,7 @@ namespace WinterUniverse
 {
     public class UIManager : MonoBehaviour
     {
+        private PlayerInputActions _inputActions;
         private HUDUI _hud;
         private StatusBarUI _statusBar;
 
@@ -12,12 +13,21 @@ namespace WinterUniverse
 
         public void Initialize()
         {
+            _inputActions = new();
+            _inputActions.Enable();
+            _inputActions.UI.Status.performed += ctx => ToggleStatusBar();
+            _inputActions.UI.Previous.performed += ctx => PreviousTab();
+            _inputActions.UI.Next.performed += ctx => NextTab();
             GetComponents();
             InitializeComponents();
         }
 
         public void ResetComponent()
         {
+            _inputActions.UI.Status.performed -= ctx => ToggleStatusBar();
+            _inputActions.UI.Previous.performed -= ctx => PreviousTab();
+            _inputActions.UI.Next.performed -= ctx => NextTab();
+            _inputActions.Disable();
             _hud.ResetComponent();
             _statusBar.ResetComponent();
         }
@@ -34,7 +44,7 @@ namespace WinterUniverse
             _statusBar.Initialize();
         }
 
-        public void OnStatusBar()
+        private void ToggleStatusBar()
         {
             if (_statusBar.isActiveAndEnabled)
             {
@@ -49,19 +59,19 @@ namespace WinterUniverse
             }
         }
 
-        public void OnToggleHUD()
-        {
-            if (_hud.isActiveAndEnabled)
-            {
-                _hud.gameObject.SetActive(false);
-            }
-            else
-            {
-                _hud.gameObject.SetActive(true);
-            }
-        }
+        //private void ToggleHUD()
+        //{
+        //    if (_hud.isActiveAndEnabled)
+        //    {
+        //        _hud.gameObject.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        _hud.gameObject.SetActive(true);
+        //    }
+        //}
 
-        public void OnPreviousTab()
+        private void PreviousTab()
         {
             if (_statusBar.isActiveAndEnabled)
             {
@@ -69,7 +79,7 @@ namespace WinterUniverse
             }
         }
 
-        public void OnNextTab()
+        private void NextTab()
         {
             if (_statusBar.isActiveAndEnabled)
             {

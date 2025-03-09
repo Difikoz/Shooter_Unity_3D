@@ -6,6 +6,7 @@ namespace WinterUniverse
     {
         private PawnController _pawn;
 
+        public Vector3 MoveVelocity;
         public Vector3 MoveDirection;
         public Vector3 LookDirection;
         public Vector3 LookPoint;

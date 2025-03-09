@@ -12,10 +12,10 @@ namespace WinterUniverse
 
         public FactionConfig Config => _config;
 
-        public void Initialize()
+        public void Initialize(PawnData data)
         {
             _pawn = GetComponent<PawnController>();
-            Change(GameManager.StaticInstance.ConfigsManager.GetFaction(_pawn.Data.Faction));
+            Change(GameManager.StaticInstance.ConfigsManager.GetFaction(data.Faction));
         }
 
         public void Change(FactionConfig config)

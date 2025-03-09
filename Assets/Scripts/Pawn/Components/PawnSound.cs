@@ -6,27 +6,29 @@ namespace WinterUniverse
     public class PawnSound : MonoBehaviour
     {
         private PawnController _pawn;
+        private VoiceConfig _config;
         private AudioSource _audioSource;
 
-        public void Initialize()
+        public void Initialize(PawnData data)
         {
             _pawn = GetComponentInParent<PawnController>();
             _audioSource = GetComponentInChildren<AudioSource>();
+            _config = GameManager.StaticInstance.ConfigsManager.GetVoice(data.Voice);
         }
 
         public void PlayAttackClip()
         {
-            PlaySound(GameManager.StaticInstance.ConfigsManager.GetVoice(_pawn.Data.Voice).AttackClips);
+            PlaySound(_config.AttackClips);
         }
 
         public void PlayGetHitClip()
         {
-            PlaySound(GameManager.StaticInstance.ConfigsManager.GetVoice(_pawn.Data.Voice).GetHitClips);
+            PlaySound(_config.GetHitClips);
         }
 
         public void PlayDeathClip()
         {
-            PlaySound(GameManager.StaticInstance.ConfigsManager.GetVoice(_pawn.Data.Voice).DeathClips);
+            PlaySound(_config.DeathClips);
         }
 
         public void PlaySound(List<AudioClip> clips, float volume = 1f, bool randomizePitch = true, float minPitch = 0.8f, float maxPitch = 1.2f)
