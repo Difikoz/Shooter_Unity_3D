@@ -5,28 +5,12 @@ namespace WinterUniverse
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private PawnData _testPawnData;
-        [SerializeField] private PlayerData _testPlayerData;
+        [SerializeField] private PlayerConfig _playerConfig;
 
         private PawnController _pawn;
         private Vector2 _moveInput;
-        private Ray _cameraRay;
-        private RaycastHit _cameraHit;
 
         public PawnController Pawn => _pawn;
-
-        public void OnMoveToPosition()
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            if (Physics.Raycast(_cameraRay, out _cameraHit, 1000f))
-            {
-                //_pawn.Locomotion.StopMovement();
-                //_pawn.Locomotion.SetDestination(_cameraHit.point);
-            }
-        }
 
         public void OnMove(InputValue value)
         {
@@ -50,7 +34,7 @@ namespace WinterUniverse
 
         public void Initialize()
         {
-            Initialize(_testPawnData, _testPlayerData);
+            Initialize(_playerConfig.GetPawnData(), _playerConfig.GetPlayerData());
         }
 
         public void Initialize(PawnData pawnData, PlayerData playerData)
@@ -73,6 +57,8 @@ namespace WinterUniverse
         public void OnUpdate()
         {
             _pawn.Input.MoveDirection = GameManager.StaticInstance.CameraManager.transform.forward * _moveInput.y + GameManager.StaticInstance.CameraManager.transform.right * _moveInput.x;
+            _pawn.Input.LookDirection = GameManager.StaticInstance.CameraManager.transform.forward;
+            _pawn.Input.LookPoint = GameManager.StaticInstance.CameraManager.GetHitPoint();
             _pawn.OnUpdate();
         }
 

@@ -15,5 +15,6 @@ MonoBehaviour:
   _displayName: Human Male
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: 0}
+  _icon: {fileID: 1562558226133225774, guid: ec60298838ec8844ab0240e20e548663, type: 3}
   _model: {fileID: 1722919727255098149, guid: 7a13497073ee2af4cb61e9d8f41282d0, type: 3}
+  _voice: {fileID: 11400000, guid: ab2bc30163c60514994b5871cdb26411, type: 2}

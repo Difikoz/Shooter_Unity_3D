@@ -9,54 +9,35 @@ namespace WinterUniverse
         [SerializeField] private float _followSpeed = 10f;
         [SerializeField] private Transform _rotateRoot;
         [SerializeField] private float _rotateSpeed = 45f;
-        [SerializeField] private float _minAngle = 15f;
-        [SerializeField] private float _maxAngle = 75f;
-        [SerializeField] private Transform _zoomRoot;
-        [SerializeField] private float _minZoomDistance = 2f;
-        [SerializeField] private float _maxZoomDistance = 10f;
-        [SerializeField] private float _zoomStep = 1f;
-        [SerializeField] private float _zoomSpeed = 4f;
+        [SerializeField] private float _minAngle = 45f;
+        [SerializeField] private float _maxAngle = 45f;
         [SerializeField] private Transform _collisionRoot;
         [SerializeField] private float _collisionRadius = 0.25f;
         [SerializeField] private float _collisionAvoidanceSpeed = 8f;
 
         private PawnController _player;
+        private Camera _camera;
         private Vector2 _lookInput;
-        private bool _clicked;
         private float _xRot;
-        private float _requiredZoomDistance;
-        private float _currentZoomDistance;
         private Vector3 _collisionCurrentOffset;
         private float _collisionDefaultOffset;
         private float _collisionRequiredOffset;
         private RaycastHit _collisionHit;
+        private RaycastHit _cameraHit;
+
+        public Camera Camera => _camera;
 
         public void OnLook(InputValue value)
         {
             _lookInput = value.Get<Vector2>();
         }
 
-        public void OnZoom(InputValue value)
-        {
-            if (GameManager.StaticInstance.InputMode == InputMode.UI)
-            {
-                return;
-            }
-            _requiredZoomDistance = Mathf.Clamp(_requiredZoomDistance + value.Get<Vector2>().y * _zoomStep, -_maxZoomDistance, -_minZoomDistance);
-        }
-
-        public void OnRightClick(InputValue value)
-        {
-            _clicked = value.isPressed;
-        }
-
         public void Initialize()
         {
-            _xRot = _rotateRoot.eulerAngles.x;
-            _currentZoomDistance = _zoomRoot.localPosition.z;
-            _requiredZoomDistance = _zoomRoot.localPosition.z;
-            _collisionDefaultOffset = _collisionRoot.localPosition.z;
             _player = GameManager.StaticInstance.PlayerManager.Pawn;
+            _camera = GetComponentInChildren<Camera>();
+            _xRot = _rotateRoot.eulerAngles.x;
+            _collisionDefaultOffset = _collisionRoot.localPosition.z;
         }
 
         public void ResetComponent()
@@ -74,15 +55,7 @@ namespace WinterUniverse
             {
                 return;
             }
-            if (_clicked)
-            {
-                LookAround();
-            }
-            if (_currentZoomDistance != _requiredZoomDistance)
-            {
-                _currentZoomDistance = Mathf.MoveTowards(_currentZoomDistance, _requiredZoomDistance, _zoomSpeed * Time.deltaTime);
-                _zoomRoot.localPosition = new(0f, 0f, _currentZoomDistance);
-            }
+            LookAround();
             HandleCollision();
         }
 
@@ -113,6 +86,18 @@ namespace WinterUniverse
             }
             _collisionCurrentOffset.z = Mathf.Lerp(_collisionRoot.localPosition.z, _collisionRequiredOffset, _collisionAvoidanceSpeed * Time.deltaTime);
             _collisionRoot.localPosition = _collisionCurrentOffset;
+        }
+
+        public Vector3 GetHitPoint()
+        {
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out _cameraHit, 1000f, GameManager.StaticInstance.LayerManager.DetectableMask))
+            {
+                return _cameraHit.point;
+            }
+            else
+            {
+                return _camera.transform.position + _camera.transform.forward * 1000f;
+            }
         }
     }
 }

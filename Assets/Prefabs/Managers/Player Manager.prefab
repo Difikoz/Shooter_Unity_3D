@@ -45,25 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa304bc0b8fba843828f0a7215288a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testPawnData:
-    DisplayName: Loner
-    Visual: Human Male
-    Faction: Loners
-    Inventory: Loner Novice
-    StateHolder: Wanderer
-  _testPlayerData:
-    Weapon: 
-    Armor: 
-    Stacks:
-      _keys: []
-      _values: 
-    Transform:
-      PosX: 0
-      PosY: 0
-      PosZ: 0
-      RotX: 0
-      RotY: 0
-      RotZ: 0
+  _playerConfig: {fileID: 11400000, guid: 8c8daef7f1d48df4d8517519cd427826, type: 2}
 --- !u!114 &2535939314946531443
 MonoBehaviour:
   m_ObjectHideFlags: 0

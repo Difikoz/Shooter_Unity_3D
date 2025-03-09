@@ -4,8 +4,8 @@ namespace WinterUniverse
 {
     public class ActionWander : ActionBase
     {
-        [SerializeField] private float _minRadius = 10f;
-        [SerializeField] private float _maxRadius = 20f;
+        //[SerializeField] private float _minRadius = 10f;
+        //[SerializeField] private float _maxRadius = 20f;
 
         public override void OnStart()
         {

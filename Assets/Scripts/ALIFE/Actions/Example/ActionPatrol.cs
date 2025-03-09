@@ -4,7 +4,7 @@ namespace WinterUniverse
 {
     public class ActionPatrol : ActionBase
     {
-        [SerializeField] private float _radius = 50f;
+        //[SerializeField] private float _radius = 50f;
 
         private Vector3 _rootPosition;
 

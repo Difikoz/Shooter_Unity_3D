@@ -32,7 +32,7 @@ namespace WinterUniverse
         public void InitializePawn(PawnData data)
         {
             _pawn = GameManager.StaticInstance.PrefabsManager.GetPawn(transform);
-            //_pawn.Initialize(data);
+            _pawn.Create(data);
         }
 
         public void LoadData(NPCData data)
@@ -54,7 +54,7 @@ namespace WinterUniverse
 
         public void ResetComponent()
         {
-            //_pawn.ResetComponent();
+            _pawn.ResetComponents();
         }
 
         public void OnUpdate()

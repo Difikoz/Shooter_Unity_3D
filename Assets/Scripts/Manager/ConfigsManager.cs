@@ -7,6 +7,7 @@ namespace WinterUniverse
     {
         [SerializeField] private float _gravity = -9.81f;
         [SerializeField] private List<VisualConfig> _visuals = new();
+        [SerializeField] private List<VoiceConfig> _voices = new();
         [SerializeField] private List<FactionConfig> _factions = new();
         [SerializeField] private List<InventoryConfig> _inventories = new();
         [SerializeField] private List<WeaponItemConfig> _weapons = new();
@@ -24,6 +25,7 @@ namespace WinterUniverse
 
         public float Gravity => _gravity;
         public List<VisualConfig> Visuals => _visuals;
+        public List<VoiceConfig> Voices => _voices;
         public List<FactionConfig> Factions => _factions;
         public List<InventoryConfig> Inventories => _inventories;
         public List<ItemConfig> Items => _items;
@@ -58,6 +60,18 @@ namespace WinterUniverse
         public VisualConfig GetVisual(string name)
         {
             foreach (VisualConfig config in _visuals)
+            {
+                if (config.DisplayName == name)
+                {
+                    return config;
+                }
+            }
+            return null;
+        }
+
+        public VoiceConfig GetVoice(string name)
+        {
+            foreach (VoiceConfig config in _voices)
             {
                 if (config.DisplayName == name)
                 {

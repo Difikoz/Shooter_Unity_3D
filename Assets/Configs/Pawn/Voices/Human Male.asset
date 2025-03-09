@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd7c04b3a94b79459a1712365e22c54, type: 3}
+  m_Name: Human Male
+  m_EditorClassIdentifier: 
+  _displayName: Human Male
+  _description: Description
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: 1562558226133225774, guid: ec60298838ec8844ab0240e20e548663, type: 3}
+  _attackClips:
+  - {fileID: 8300000, guid: b9eae9e53659c044db3ed0339a36f746, type: 3}
+  - {fileID: 8300000, guid: 3851594efa46c934ba2f05cb44869ffd, type: 3}
+  - {fileID: 8300000, guid: 7dc545b91a9ae624db494f72365113cf, type: 3}
+  - {fileID: 8300000, guid: ffab003f22d62f046ac7fcf5410e7504, type: 3}
+  - {fileID: 8300000, guid: ea3ac6a7f93403a4b97fc65fe0666541, type: 3}
+  - {fileID: 8300000, guid: a9d6f68f31f2c804c8caa25d9343331d, type: 3}
+  - {fileID: 8300000, guid: e765812c66dce594997287b6ac3a8a01, type: 3}
+  - {fileID: 8300000, guid: e074d44c3f01b7649a0e54e5dc27cb73, type: 3}
+  - {fileID: 8300000, guid: ae728b02f0dc31b48a7934e3f9385011, type: 3}
+  - {fileID: 8300000, guid: fe8d314bdd8590243860ad788f86f211, type: 3}
+  _getHitClips:
+  - {fileID: 8300000, guid: 0552d397b63530d498b31fbec22b16f9, type: 3}
+  - {fileID: 8300000, guid: ad6b07ba9e7248643a980695160ed915, type: 3}
+  - {fileID: 8300000, guid: 072af073e78df1842a48b96cf25c559c, type: 3}
+  - {fileID: 8300000, guid: 7014a644d4e05224fa0ad7f364bfe8b7, type: 3}
+  - {fileID: 8300000, guid: f920b5b415773bb44b3ebe76fa3df67e, type: 3}
+  - {fileID: 8300000, guid: d2a081d02ff35734ab87613792729d32, type: 3}
+  - {fileID: 8300000, guid: bb40a3d965f6399469c1e53658168eab, type: 3}
+  - {fileID: 8300000, guid: a3c82bb90f409eb4cac8543b8573550b, type: 3}
+  - {fileID: 8300000, guid: dd5f395e34c957843a95955bc486471a, type: 3}
+  - {fileID: 8300000, guid: 638ce68d28a80f74d81276b1492242b4, type: 3}
+  - {fileID: 8300000, guid: d79576c0ace1e644982bf98712d12bc6, type: 3}
+  - {fileID: 8300000, guid: 32d18cd052e377b44869662875aa6ca2, type: 3}
+  - {fileID: 8300000, guid: 45cca2c3ab30a6849b6a6ec2f93e2810, type: 3}
+  _deathClips:
+  - {fileID: 8300000, guid: 06abcb3861b3bb9468e270de54876a56, type: 3}
+  - {fileID: 8300000, guid: 31566dde7eb57ca46ba187fbedd94f39, type: 3}
+  - {fileID: 8300000, guid: 9723e3abed5996142aafb597a9f74fe2, type: 3}
+  - {fileID: 8300000, guid: f6bdbaa0756bd6044bae9141eaceec44, type: 3}

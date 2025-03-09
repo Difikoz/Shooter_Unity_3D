@@ -7,9 +7,11 @@ namespace WinterUniverse
     public class FactionConfig : BasicInfoConfig
     {
         [SerializeField] private string _memberName = "Name";
+        [SerializeField] private List<NPCConfig> _memberConfigs = new();
         [SerializeField] private List<FactionRelationship> _relationships = new();
 
         public string MemberName => _memberName;
+        public List<NPCConfig> MemberConfigs => _memberConfigs;
         public List<FactionRelationship> Relationships => _relationships;
 
         public RelationshipState GetState(FactionConfig other)

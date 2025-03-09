@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &45434130645493749
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5520214404453406989}
-  m_Layer: 0
-  m_Name: Zoom Root
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5520214404453406989
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45434130645493749}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8327421861848266142}
-  m_Father: {fileID: 3085235614027610017}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3083729727942124829
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,13 +142,8 @@ MonoBehaviour:
   _followSpeed: 10
   _rotateRoot: {fileID: 3085235614027610017}
   _rotateSpeed: 45
-  _minAngle: 15
-  _maxAngle: 75
-  _zoomRoot: {fileID: 5520214404453406989}
-  _minZoomDistance: 2
-  _maxZoomDistance: 10
-  _zoomStep: 1
-  _zoomSpeed: 4
+  _minAngle: 45
+  _maxAngle: 45
   _collisionRoot: {fileID: 8327421861848266142}
   _collisionRadius: 0.25
   _collisionAvoidanceSpeed: 8
@@ -238,14 +201,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7815803607672455352}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalRotation: {x: -0.00000007450581, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5520214404453406989}
+  - {fileID: 8327421861848266142}
   m_Father: {fileID: 2694637256923264078}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7965414291185874483
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,12 +234,12 @@ Transform:
   m_GameObject: {fileID: 7965414291185874483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2141772057715910970}
-  m_Father: {fileID: 5520214404453406989}
+  m_Father: {fileID: 3085235614027610017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9217829288950572090
 GameObject:

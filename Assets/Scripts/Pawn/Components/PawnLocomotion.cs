@@ -35,13 +35,17 @@ namespace WinterUniverse
             _cc.Move(_fallVelocity * Time.deltaTime);
             if (_pawn.Input.MoveDirection != Vector3.zero)
             {
-                _moveVelocity = Vector3.MoveTowards(_moveVelocity, _pawn.Input.MoveDirection * _pawn.Status.MovementSpeed.CurrentValue, _pawn.Status.MovementSpeed.CurrentValue * 2f * Time.deltaTime);
+                _moveVelocity = Vector3.MoveTowards(_moveVelocity, _pawn.Input.MoveDirection, 2f * Time.deltaTime);
             }
             else
             {
-                _moveVelocity = Vector3.MoveTowards(_moveVelocity, Vector3.zero, _pawn.Status.MovementSpeed.CurrentValue * 4f * Time.deltaTime);
+                _moveVelocity = Vector3.MoveTowards(_moveVelocity, Vector3.zero, 4f * Time.deltaTime);
             }
-            _cc.Move(_moveVelocity * Time.deltaTime);
+            //_cc.Move(_moveVelocity * Time.deltaTime);
+            _pawn.Input.ForwardVelocity = Vector3.Dot(_moveVelocity, transform.forward);
+            _pawn.Input.RightVelocity = Vector3.Dot(_moveVelocity, transform.right);
+            _pawn.Input.TurnVelocity = Vector3.SignedAngle(transform.forward, _pawn.Input.LookDirection, Vector3.up);
+            _pawn.Input.FallVelocity = _fallVelocity.y;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace WinterUniverse
         protected PawnController _pawn;
         protected WeaponItemConfig _config;
         private GameObject _model;
+        private LeftHandTarget _leftHandTarget;
 
         public virtual void Initialize(WeaponItemConfig config)
         {
@@ -18,6 +19,15 @@ namespace WinterUniverse
             }
             _config = config;
             _model = LeanPool.Spawn(_config.Model, transform);
+            _leftHandTarget = GetComponentInChildren<LeftHandTarget>();
+            if (_config.UseLeftHandIK)
+            {
+                _pawn.Animator.EnableLeftHandIK(_leftHandTarget.transform);
+            }
+            else
+            {
+                _pawn.Animator.DisableLeftHandIK();
+            }
         }
 
         public virtual bool CanFire()

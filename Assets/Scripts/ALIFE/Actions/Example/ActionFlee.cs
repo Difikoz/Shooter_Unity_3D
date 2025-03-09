@@ -4,8 +4,8 @@ namespace WinterUniverse
 {
     public class ActionFlee : ActionBase
     {
-        [SerializeField] private float _minDistance = 50f;
-        [SerializeField] private float _maxDistance = 100f;
+        //[SerializeField] private float _minDistance = 50f;
+        //[SerializeField] private float _maxDistance = 100f;
 
         public override void OnStart()
         {

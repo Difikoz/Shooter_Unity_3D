@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcPrefab: {fileID: 2077529882552173778, guid: 76b870c59bf5c724ab7371631b9c0325, type: 3}
-  _pawnPrefab: {fileID: 0}
+  _pawnPrefab: {fileID: 227809571523858855, guid: d79337de3ed427e4aa7ebfad3509c2fc, type: 3}
   _itemPrefab: {fileID: 0}

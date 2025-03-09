@@ -7,6 +7,7 @@ namespace WinterUniverse
     public class WeaponItemConfig : ItemConfig
     {
         [SerializeField] private GameObject _weaponTypePrefab;
+        [SerializeField] private bool _useLeftHandIK = true;
         [SerializeField] private float _fireRate = 300f;
         [SerializeField] private float _range = 100f;
         [SerializeField] private float _force = 250f;
@@ -17,6 +18,7 @@ namespace WinterUniverse
         [SerializeField] private EquipmentData _equipmentData;
 
         public GameObject WeaponTypePrefab => _weaponTypePrefab;
+        public bool UseLeftHandIK => _useLeftHandIK;
         public float FireRate => _fireRate;
         public float Range => _range;
         public float Force => _force;
