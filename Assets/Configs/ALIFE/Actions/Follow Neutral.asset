@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251d7a595896c7c46b6d0cdb5c93825a, type: 3}
+  m_Name: Follow Neutral
+  m_EditorClassIdentifier: 
+  _displayName: Follow Neutral
+  _cost: 1
+  _playAnimationOnStart: 0
+  _animationOnStart: 
+  _completeOnAnimationEnd: 0
+  _completeOnReachedDestination: 0
+  _completeOnTimerEnd: 0
+  _timerDuration: 0
+  _stopMovementOnAbort: 1
+  _stopMovementOnComplete: 1
+  _resetTargetOnAbort: 0
+  _resetTargetOnComplete: 0
+  _results:
+  - _config: {fileID: 11400000, guid: 38f4416c95a775946a6f1dd5491ddc66, type: 2}
+    _value: 1
+  _conditionsToStart:
+  - _config: {fileID: 11400000, guid: 425c593455d185a4fb1a0e5080d146a6, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 98e07758d21b2694c8b0005ad9ee5031, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: f5d286a364c14d34fb548a48ace588fc, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 0
+  - _config: {fileID: 11400000, guid: df87cef6876ac0747a64da0ca5984d4c, type: 2}
+    _value: 0
+  _conditionsToAbort:
+  - _config: {fileID: 11400000, guid: 0f057805e996db84e9427ad71a0e3b01, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: 42d75bb9eed5111488eedc65436cc125, type: 2}
+    _value: 1
+  - _config: {fileID: 11400000, guid: df87cef6876ac0747a64da0ca5984d4c, type: 2}
+    _value: 1
+  _conditionsToComplete:
+  - _config: {fileID: 11400000, guid: 98e07758d21b2694c8b0005ad9ee5031, type: 2}
+    _value: 0
+  _effectsOnStart: []
+  _effectsOnAbort: []
+  _effectsOnComplete: []

@@ -14,6 +14,7 @@ namespace WinterUniverse
         public float RightVelocity;
         public float TurnVelocity;
         public float FallVelocity;
+        public float LookAngle;
 
         public void Initialize()
         {

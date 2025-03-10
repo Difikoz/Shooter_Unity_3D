@@ -48,6 +48,7 @@ namespace WinterUniverse
             if (_player != null)
             {
                 transform.position = Vector3.Lerp(transform.position, _player.transform.position, _followSpeed * Time.deltaTime);
+                _player.Input.LookAngle = _xRot;
             }
             if (GameManager.StaticInstance.InputMode == InputMode.UI)
             {
@@ -74,10 +75,10 @@ namespace WinterUniverse
         private void HandleCollision()
         {
             _collisionRequiredOffset = _collisionDefaultOffset;
-            Vector3 direction = (_collisionRoot.position - _heightRoot.position).normalized;
-            if (Physics.SphereCast(_heightRoot.position, _collisionRadius, direction, out _collisionHit, Mathf.Abs(_collisionRequiredOffset), GameManager.StaticInstance.LayerManager.ObstacleMask))
+            Vector3 direction = (_collisionRoot.position - _rotateRoot.position).normalized;
+            if (Physics.SphereCast(_rotateRoot.position, _collisionRadius, direction, out _collisionHit, Mathf.Abs(_collisionRequiredOffset), GameManager.StaticInstance.LayerManager.ObstacleMask))
             {
-                _collisionRequiredOffset = -(Vector3.Distance(_heightRoot.position, _collisionHit.point) - _collisionRadius);
+                _collisionRequiredOffset = -(Vector3.Distance(_rotateRoot.position, _collisionHit.point) - _collisionRadius);
             }
             if (Mathf.Abs(_collisionRequiredOffset) < _collisionRadius)
             {

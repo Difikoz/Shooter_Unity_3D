@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using static UnityEngine.GraphicsBuffer;
 
 namespace WinterUniverse
 {
@@ -16,7 +15,6 @@ namespace WinterUniverse
         [SerializeField] private Rig _aimRig;
         [SerializeField] private Rig _leftHandRig;
         [SerializeField] private Transform _leftHandTargetIK;
-        [SerializeField] private Transform _aimBone;
         [SerializeField] private Transform _aimTarget;
         [SerializeField] private Transform _headPoint;
         [SerializeField] private Transform _eyesPoint;
@@ -61,7 +59,7 @@ namespace WinterUniverse
             _animator.SetFloat("Turn Velocity", _pawn.Input.TurnVelocity);
             _animator.SetFloat("Fall Velocity", _pawn.Input.FallVelocity);
             _animator.SetFloat("Movement Speed", _pawn.Status.MovementSpeed.CurrentValue / 100f);
-            _animator.SetFloat("Aim Angle", _aimBone.localEulerAngles.x);
+            _animator.SetFloat("Aim Angle", _pawn.Input.LookAngle);
             _animator.SetBool("Is Moving", _pawn.Input.MoveVelocity.magnitude > 0.1f);
             _animator.SetBool("Is Grounded", _pawn.StateHolder.CompareStateValue("Is Grounded", true));
             _animator.SetBool("Is Aiming", _useAiming && _pawn.StateHolder.CompareStateValue("Is Aiming", true));

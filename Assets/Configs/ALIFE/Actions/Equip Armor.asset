@@ -22,6 +22,8 @@ MonoBehaviour:
   _timerDuration: 0
   _stopMovementOnAbort: 0
   _stopMovementOnComplete: 0
+  _resetTargetOnAbort: 0
+  _resetTargetOnComplete: 0
   _results:
   - _config: {fileID: 11400000, guid: d5cb8cff717d3234a84fa247540fd075, type: 2}
     _value: 1
@@ -34,4 +36,6 @@ MonoBehaviour:
   _conditionsToComplete: []
   _effectsOnStart: []
   _effectsOnAbort: []
-  _effectsOnComplete: []
+  _effectsOnComplete:
+  - _config: {fileID: 11400000, guid: 74da4b036f5cfe64fabdb07a99cf5c09, type: 2}
+    _value: 0

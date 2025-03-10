@@ -142,7 +142,7 @@ MonoBehaviour:
   _rotateRoot: {fileID: 3085235614027610017}
   _rotateSpeed: 45
   _minAngle: 45
-  _maxAngle: 45
+  _maxAngle: 75
   _collisionRoot: {fileID: 8327421861848266142}
   _collisionRadius: 0.25
   _collisionAvoidanceSpeed: 8

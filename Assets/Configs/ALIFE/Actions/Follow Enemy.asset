@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 251d7a595896c7c46b6d0cdb5c93825a, type: 3}
-  m_Name: Fighting
+  m_Name: Follow Enemy
   m_EditorClassIdentifier: 
-  _displayName: Fighting
+  _displayName: Follow Enemy
   _cost: 1
   _playAnimationOnStart: 0
   _animationOnStart: 
@@ -22,6 +22,8 @@ MonoBehaviour:
   _timerDuration: 0
   _stopMovementOnAbort: 1
   _stopMovementOnComplete: 1
+  _resetTargetOnAbort: 0
+  _resetTargetOnComplete: 0
   _results:
   - _config: {fileID: 11400000, guid: 17aa1a53652c31a43be329d67f42aff0, type: 2}
     _value: 1
