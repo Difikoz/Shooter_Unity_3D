@@ -5,6 +5,7 @@ namespace WinterUniverse
     public class WeaponRanged : Weapon
     {
         private ShootPoint _shootPoint;
+        private float _lastFireTime;
 
         public override void Initialize(WeaponItemConfig config)
         {
@@ -12,9 +13,19 @@ namespace WinterUniverse
             _shootPoint = GetComponentInChildren<ShootPoint>();
         }
 
-        public override void OnFire()
+        public override bool CanAttack()
         {
-            //fire
+            if (Time.time < _config.FireRate / 600f + _lastFireTime)
+            {
+                return false;
+            }
+            return base.CanAttack();
+        }
+
+        public override void OnAttack()
+        {
+            _lastFireTime = Time.time;
+            Debug.Log($"POOF! {_lastFireTime}");
         }
     }
 }

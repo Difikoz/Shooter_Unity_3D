@@ -132,6 +132,8 @@ namespace WinterUniverse
 
         public virtual void OnStart()
         {
+            _npc.Pawn.Combat.SetTarget(null);// promote to variable???
+            _npc.StopMovement();// promote to variable???
             _timerTime = Time.time;
             foreach (KeyValuePair<string, bool> effect in _effectsOnStart)
             {
@@ -151,7 +153,11 @@ namespace WinterUniverse
             }
             if (_config.StopMovementOnAbort)
             {
-                //_npc.Pawn.Locomotion.StopMovement();
+                _npc.StopMovement();
+            }
+            if (_config.ResetTargetOnAbort)
+            {
+                _npc.Pawn.Combat.SetTarget(null);
             }
         }
 
@@ -163,7 +169,11 @@ namespace WinterUniverse
             }
             if (_config.StopMovementOnComplete)
             {
-                //_npc.Pawn.Locomotion.StopMovement();
+                _npc.StopMovement();
+            }
+            if (_config.ResetTargetOnComplete)
+            {
+                _npc.Pawn.Combat.SetTarget(null);
             }
         }
 

@@ -1,4 +1,3 @@
-using Lean.Pool;
 using UnityEngine;
 
 namespace WinterUniverse
@@ -33,7 +32,7 @@ namespace WinterUniverse
 
         public void Create(PawnData data)
         {
-            LeanPool.Spawn(GameManager.StaticInstance.ConfigsManager.GetVisual(data.Visual).Model, transform);
+            GameManager.StaticInstance.PrefabsManager.GetVisual(data.Visual, transform);
             GetComponents();
             InitializeComponents(data);
         }
@@ -84,7 +83,7 @@ namespace WinterUniverse
             _inventory.ResetComponent();
             _locomotion.ResetComponent();
             _status.ResetComponent();
-            LeanPool.Despawn(_animator.gameObject);
+            GameManager.StaticInstance.PrefabsManager.DespawnObject(_animator.gameObject);
         }
 
         public void OnUpdate()

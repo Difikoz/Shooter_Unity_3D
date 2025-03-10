@@ -7,10 +7,12 @@ namespace WinterUniverse
     public class WeaponItemConfig : ItemConfig
     {
         [SerializeField] private GameObject _weaponTypePrefab;
+        [SerializeField] private AnimatorOverrideController _controller;
         [SerializeField] private bool _useLeftHandIK = true;
         [SerializeField] private bool _useAiming = true;
         [SerializeField] private float _fireRate = 300f;
-        [SerializeField] private float _range = 100f;
+        [SerializeField] private float _minRange = 50f;
+        [SerializeField] private float _maxRange = 100f;
         [SerializeField] private float _force = 250f;
         [SerializeField] private float _spread = 5f;
         [SerializeField] private float _energyConsumption = 5f;
@@ -19,10 +21,12 @@ namespace WinterUniverse
         [SerializeField] private EquipmentData _equipmentData;
 
         public GameObject WeaponTypePrefab => _weaponTypePrefab;
+        public AnimatorOverrideController Controller => _controller;
         public bool UseLeftHandIK => _useLeftHandIK;
         public bool UseAiming => _useAiming;
         public float FireRate => _fireRate;
-        public float Range => _range;
+        public float MinRange => _minRange;
+        public float MaxRange => _maxRange;
         public float Force => _force;
         public float Spread => _spread;
         public float EnergyConsumption => _energyConsumption;

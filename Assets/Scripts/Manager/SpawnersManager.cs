@@ -16,5 +16,13 @@ namespace WinterUniverse
                 spawner.Initialize();
             }
         }
+
+        public void OnUpdate()
+        {
+            foreach (SpawnerBase spawner in _spawners)
+            {
+                spawner.OnUpdate();
+            }
+        }
     }
 }

@@ -24,8 +24,12 @@ MonoBehaviour:
   _weight: 1
   _price: 300
   _weaponTypePrefab: {fileID: 1969088306771676535, guid: 6547b4a52e2af404891e31022023638e, type: 3}
+  _controller: {fileID: 22100000, guid: bbe4e2354ef7e26438c981e411c002b6, type: 2}
+  _useLeftHandIK: 1
+  _useAiming: 1
   _fireRate: 300
-  _range: 100
+  _minRange: 50
+  _maxRange: 100
   _force: 250
   _spread: 5
   _energyConsumption: 5

@@ -5,28 +5,28 @@ namespace WinterUniverse
     public class GameManager : Singleton<GameManager>
     {
         private InputMode _inputMode;
-        private PlayerManager _playerManager;
-        private NPCManager _npcManager;
-        private CameraManager _cameraManager;
         private AudioManager _audioManager;
+        private CameraManager _cameraManager;
         private ConfigsManager _configsManager;
         private LayerManager _layerManager;
+        private NPCManager _npcManager;
+        private PlayerManager _playerManager;
         private PrefabsManager _prefabsManager;
         private SpawnersManager _spawnersManager;
-        private WorldManager _worldManager;
         private UIManager _uiManager;
+        private WorldManager _worldManager;
 
         public InputMode InputMode => _inputMode;
-        public PlayerManager PlayerManager => _playerManager;
-        public NPCManager NPCManager => _npcManager;
-        public CameraManager CameraManager => _cameraManager;
         public AudioManager AudioManager => _audioManager;
+        public CameraManager CameraManager => _cameraManager;
         public ConfigsManager ConfigsManager => _configsManager;
         public LayerManager LayerManager => _layerManager;
+        public NPCManager NPCManager => _npcManager;
+        public PlayerManager PlayerManager => _playerManager;
         public PrefabsManager PrefabsManager => _prefabsManager;
         public SpawnersManager SpawnersManager => _spawnersManager;
-        public WorldManager WorldManager => _worldManager;
         public UIManager UIManager => _uiManager;
+        public WorldManager WorldManager => _worldManager;
 
         protected override void Awake()
         {
@@ -37,24 +37,21 @@ namespace WinterUniverse
 
         //private void OnDestroy()
         //{
-        //    _uiManager.ResetComponent();
-        //    _cameraManager.ResetComponent();
-        //    _playerManager.ResetComponent();
-        //    _aiManager.ResetComponent();
+        //    ResetComponents();
         //}
 
         private void GetComponents()
         {
-            _playerManager = GetComponentInChildren<PlayerManager>();
-            _npcManager = GetComponentInChildren<NPCManager>();
-            _cameraManager = GetComponentInChildren<CameraManager>();
             _audioManager = GetComponentInChildren<AudioManager>();
+            _cameraManager = GetComponentInChildren<CameraManager>();
             _configsManager = GetComponentInChildren<ConfigsManager>();
             _layerManager = GetComponentInChildren<LayerManager>();
+            _npcManager = GetComponentInChildren<NPCManager>();
+            _playerManager = GetComponentInChildren<PlayerManager>();
             _prefabsManager = GetComponentInChildren<PrefabsManager>();
             _spawnersManager = GetComponentInChildren<SpawnersManager>();
-            _worldManager = GetComponentInChildren<WorldManager>();
             _uiManager = GetComponentInChildren<UIManager>();
+            _worldManager = GetComponentInChildren<WorldManager>();
         }
 
         private void InitializeComponents()
@@ -70,8 +67,17 @@ namespace WinterUniverse
             SetInputMode(InputMode.Game);
         }
 
+        //private void ResetComponents()
+        //{
+        //    _uiManager.ResetComponent();
+        //    _cameraManager.ResetComponent();
+        //    _playerManager.ResetComponent();
+        //    _npcManager.ResetComponent();
+        //}
+
         private void Update()
         {
+            _spawnersManager.OnUpdate();
             _playerManager.OnUpdate();
             _npcManager.OnUpdate();
             _cameraManager.OnUpdate();

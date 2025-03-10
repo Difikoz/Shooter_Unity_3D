@@ -46,14 +46,14 @@ namespace WinterUniverse
             if (GameManager.StaticInstance.InputMode == InputMode.Game)
             {
                 _moveInput = _inputActions.Player.Move.ReadValue<Vector2>();
-                _pawn.Input.FireInput = _inputActions.Player.Fire.IsPressed();
-                _pawn.Input.AimInput = _inputActions.Player.Aim.IsPressed();
+                _pawn.StateHolder.SetState("Is Attacking", _inputActions.Player.Attack.IsPressed());
+                _pawn.StateHolder.SetState("Is Aiming", _inputActions.Player.Aim.IsPressed());
             }
             else
             {
                 _moveInput = Vector2.zero;
-                _pawn.Input.FireInput = false;
-                _pawn.Input.AimInput = false;
+                _pawn.StateHolder.SetState("Is Attacking", false);
+                _pawn.StateHolder.SetState("Is Aiming", false);
             }
             _pawn.Input.MoveDirection = GameManager.StaticInstance.CameraManager.transform.forward * _moveInput.y + GameManager.StaticInstance.CameraManager.transform.right * _moveInput.x;
             _pawn.Input.LookDirection = GameManager.StaticInstance.CameraManager.transform.forward;

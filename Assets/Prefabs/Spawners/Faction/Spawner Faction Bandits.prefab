@@ -221,12 +221,16 @@ MonoBehaviour:
   _minAmount: 1
   _maxAmount: 2
   _repeatSpawn: 1
-  _spawnCooldown: 60
-  _faction: {fileID: 0}
-  _visuals: []
-  _inventories: []
-  _stateHolders: []
-  _goalHolders: []
+  _spawnCooldown: 30
+  _faction: {fileID: 11400000, guid: 0a8d9f001c3644343b921c2519ebd4d4, type: 2}
+  _visuals:
+  - {fileID: 11400000, guid: a757acdee1e83e54caa2e34fe8d091d4, type: 2}
+  _inventories:
+  - {fileID: 11400000, guid: 3af2e182bc2f1b046b57cf37528a0805, type: 2}
+  _stateHolders:
+  - {fileID: 11400000, guid: b6b5790b5db3687489af92517239596d, type: 2}
+  _goalHolders:
+  - {fileID: 11400000, guid: fb24e6b91a5edfc469d4809694424a45, type: 2}
 --- !u!1 &4091959639754071057
 GameObject:
   m_ObjectHideFlags: 0

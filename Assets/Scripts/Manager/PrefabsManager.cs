@@ -29,6 +29,11 @@ namespace WinterUniverse
             return LeanPool.Spawn(_pawnPrefab, position, rotation).GetComponent<PawnController>();
         }
 
+        public GameObject GetVisual(string name, Transform root)
+        {
+            return LeanPool.Spawn(GameManager.StaticInstance.ConfigsManager.GetVisual(name).Model, root);
+        }
+
         public InteractableItem GetItem(Transform point)
         {
             return GetItem(point.position, point.rotation);
@@ -37,6 +42,11 @@ namespace WinterUniverse
         public InteractableItem GetItem(Vector3 position, Quaternion rotation)
         {
             return LeanPool.Spawn(_itemPrefab, position, rotation).GetComponent<InteractableItem>();
+        }
+
+        public void DespawnObject(GameObject go, float delay = 0f)
+        {
+            LeanPool.Despawn(go, delay);
         }
     }
 }

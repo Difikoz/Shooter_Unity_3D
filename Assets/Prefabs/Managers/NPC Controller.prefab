@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8990460114860600523}
   - component: {fileID: 8289090706239496243}
+  - component: {fileID: 3298983514522793926}
   m_Layer: 0
   m_Name: NPC Controller
   m_TagString: Untagged
@@ -122,7 +123,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d664752ca442e624786670049c5bdae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _proccessingPlanDelay: 0.5
+  _proccessingPlanDelay: 1
+--- !u!195 &3298983514522793926
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077529882552173778}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3170182424145321390
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,8 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 50df6488bc1121b40907968d86a8c9a6, type: 2}
-  _minDistance: 50
-  _maxDistance: 100
 --- !u!1 &4837603887051803001
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 8a70f20cb2f49944baadfbab8ab0e281, type: 2}
-  _radius: 50
 --- !u!1 &5634109358338191068
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 5dcd6711c723f5141a44184c4a09f329, type: 2}
+  _resetTime: 10
 --- !u!1 &7352886360243155758
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,8 +549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 075380bbb69be35439f5246cb253d2d9, type: 2}
-  _minRadius: 10
-  _maxRadius: 20
 --- !u!1 &8718508450388182290
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,5 +639,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 31cd18c14be240b4da92f7322a9c8274, type: 2}
-  _minDistance: 50
-  _maxDistance: 100

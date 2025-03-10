@@ -16,6 +16,8 @@ namespace WinterUniverse
         [SerializeField] private float _timerDuration = 2f;
         [SerializeField] private bool _stopMovementOnAbort;
         [SerializeField] private bool _stopMovementOnComplete;
+        [SerializeField] private bool _resetTargetOnAbort;
+        [SerializeField] private bool _resetTargetOnComplete;
         [SerializeField] private List<StateCreator> _results = new();
         [SerializeField] private List<StateCreator> _conditionsToStart = new();
         [SerializeField] private List<StateCreator> _conditionsToAbort = new();
@@ -34,6 +36,8 @@ namespace WinterUniverse
         public float TimerDuration => _timerDuration;
         public bool StopMovementOnAbort => _stopMovementOnAbort;
         public bool StopMovementOnComplete => _stopMovementOnComplete;
+        public bool ResetTargetOnAbort => _resetTargetOnAbort;
+        public bool ResetTargetOnComplete => _resetTargetOnComplete;
         public List<StateCreator> Results => _results;
         public List<StateCreator> ConditionsToStart => _conditionsToStart;
         public List<StateCreator> ConditionsToAbort => _conditionsToAbort;

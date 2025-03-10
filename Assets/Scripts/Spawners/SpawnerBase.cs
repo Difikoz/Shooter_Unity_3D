@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,41 +11,28 @@ namespace WinterUniverse
         [SerializeField] private bool _repeatSpawn = true;
         [SerializeField] private float _spawnCooldown = 60f;
 
-        private Coroutine _spawnCoroutine;
+        private float _currentTime;
 
         public void Initialize()
         {
-            if (_repeatSpawn)
+            _currentTime = 0f;
+            OnSpawn();
+        }
+
+        public void OnUpdate()
+        {
+            if (!_repeatSpawn)
             {
-                StartSpawn();
+                return;
+            }
+            if (_currentTime >= _spawnCooldown)
+            {
+                _currentTime = 0f;
+                OnSpawn();
             }
             else
             {
-                OnSpawn();
-            }
-        }
-
-        public void StartSpawn()
-        {
-            StopSpawn();
-            _spawnCoroutine = StartCoroutine(SpawnTimer());
-        }
-
-        public void StopSpawn()
-        {
-            if (_spawnCoroutine != null)
-            {
-                StopCoroutine(_spawnCoroutine);
-            }
-        }
-
-        private IEnumerator SpawnTimer()
-        {
-            WaitForSeconds delay = new(_spawnCooldown);
-            while (true)
-            {
-                OnSpawn();
-                yield return delay;
+                _currentTime += Time.deltaTime;
             }
         }
 

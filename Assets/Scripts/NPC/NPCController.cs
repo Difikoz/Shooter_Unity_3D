@@ -2,26 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace WinterUniverse
 {
     public class NPCController : MonoBehaviour
     {
         private PawnController _pawn;
+        private NavMeshAgent _agent;
         private ActionBase _currentAction;
         private GoalHolder _currentGoal;
         private List<ActionBase> _actions = new();
         private Dictionary<GoalHolder, int> _goals = new();
         private Queue<ActionBase> _actionQueue;
+        private float _remainingDistance;
+        private bool _reachedDestination;
 
-        [SerializeField] private float _proccessingPlanDelay = 0.5f;
+        [SerializeField] private float _proccessingPlanDelay = 1f;
 
         public PawnController Pawn => _pawn;
-
         public ActionBase CurrentAction => _currentAction;
         public GoalHolder CurrentGoal => _currentGoal;
         public List<ActionBase> Actions => _actions;
         public Dictionary<GoalHolder, int> Goals => _goals;
+        public float RemainingDistance => _remainingDistance;
+        public bool ReachedDestination => _reachedDestination;
 
         public void Initialize(PawnData pawnData, NPCData npcData)
         {
@@ -37,6 +42,10 @@ namespace WinterUniverse
 
         public void LoadData(NPCData data)
         {
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.height = _pawn.Animator.Height;
+            _agent.radius = _pawn.Animator.Radius;
+            _agent.updateRotation = false;
             ActionBase[] actions = GetComponentsInChildren<ActionBase>();
             foreach (ActionBase action in actions)
             {
@@ -59,7 +68,9 @@ namespace WinterUniverse
 
         public void OnUpdate()
         {
+            _pawn.Input.MoveDirection = _agent.desiredVelocity;
             _pawn.OnUpdate();
+            transform.SetPositionAndRotation(_pawn.transform.position, _pawn.transform.rotation);
         }
 
         private IEnumerator ProccessPlan()
@@ -152,6 +163,70 @@ namespace WinterUniverse
             _currentAction = null;
             _currentGoal = null;
             _actionQueue = null;
+        }
+
+        public void SetDestination(Vector3 position)
+        {
+            if (_pawn.StateHolder.CompareStateValue("Is Perfoming Action", true))
+            {
+                StopMovement();
+                return;
+            }
+            for (int i = 1; i < 5; i++)
+            {
+                if (NavMesh.SamplePosition(position, out NavMeshHit hit, i * 5f, NavMesh.AllAreas))
+                {
+                    _remainingDistance = Vector3.Distance(transform.position, _agent.destination);
+                    _agent.SetDestination(hit.position);
+                    _reachedDestination = false;
+                    break;
+                }
+            }
+        }
+
+        public void SetDestinationAroundSelf(float minRange, float maxRange)
+        {
+            SetDestinationInRange(transform.position, minRange, maxRange);
+        }
+
+        public void SetDestinationAroundSelf(float radius)
+        {
+            SetDestinationInRange(transform.position, radius);
+        }
+
+        public void SetDestinationInRange(Vector3 position, float minRange, float maxRange)
+        {
+            if (Random.value > 0.5f)
+            {
+                position.x += Random.Range(minRange, maxRange);
+            }
+            else
+            {
+                position.x -= Random.Range(minRange, maxRange);
+            }
+            if (Random.value > 0.5f)
+            {
+                position.z += Random.Range(minRange, maxRange);
+            }
+            else
+            {
+                position.z -= Random.Range(minRange, maxRange);
+            }
+            SetDestination(position);
+        }
+
+        public void SetDestinationInRange(Vector3 position, float radius)
+        {
+            radius /= 2f;
+            position += Vector3.right * Random.Range(-radius, radius);
+            position += Vector3.forward * Random.Range(-radius, radius);
+            SetDestination(position);
+        }
+
+        public void StopMovement()
+        {
+            _agent.ResetPath();
+            _reachedDestination = true;
         }
     }
 }

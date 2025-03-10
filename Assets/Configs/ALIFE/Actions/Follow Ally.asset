@@ -22,11 +22,13 @@ MonoBehaviour:
   _timerDuration: 0
   _stopMovementOnAbort: 1
   _stopMovementOnComplete: 1
+  _resetTargetOnAbort: 0
+  _resetTargetOnComplete: 0
   _results:
   - _config: {fileID: 11400000, guid: 38f4416c95a775946a6f1dd5491ddc66, type: 2}
     _value: 1
   _conditionsToStart:
-  - _config: {fileID: 11400000, guid: f297a9c337427564686872d79b6008b6, type: 2}
+  - _config: {fileID: 11400000, guid: 425c593455d185a4fb1a0e5080d146a6, type: 2}
     _value: 1
   - _config: {fileID: 11400000, guid: dfc7452a093befd438d95a00e229c1b8, type: 2}
     _value: 1

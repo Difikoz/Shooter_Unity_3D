@@ -17,6 +17,8 @@ MonoBehaviour:
   _color: {r: 1, g: 1, b: 1, a: 1}
   _icon: {fileID: 1562558226133225774, guid: ec60298838ec8844ab0240e20e548663, type: 3}
   _memberName: Scientist
+  _memberConfigs:
+  - {fileID: 11400000, guid: f6e2fc6ff4f74ca4090309c3103f2a83, type: 2}
   _relationships:
   - _faction: {fileID: 11400000, guid: ec85a221fe42ffa498f67aae2ce90688, type: 2}
     _state: 1

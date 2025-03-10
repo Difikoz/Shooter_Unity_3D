@@ -35,11 +35,7 @@ namespace WinterUniverse
                 _weapon = LeanPool.Spawn(_config.WeaponTypePrefab, transform).GetComponent<Weapon>();
                 _weapon.Initialize(_config);
             }
-            else
-            {
-                _pawn.Animator.ToggleAimingIK(false);
-                _pawn.Animator.ToggleLeftHandIK(null);
-            }
+            _pawn.Animator.ChangeController(_config);
         }
     }
 }

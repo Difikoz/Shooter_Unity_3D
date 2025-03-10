@@ -5,31 +5,37 @@ namespace WinterUniverse
 {
     public class SpawnerFaction : SpawnerBase
     {
+        [SerializeField] private int _limitAmount = 10;
         [SerializeField] private FactionConfig _faction;
-        [SerializeField] private List<VisualConfig> _visuals = new();
-        [SerializeField] private List<InventoryConfig> _inventories = new();
-        [SerializeField] private List<StateHolderConfig> _stateHolders = new();
-        [SerializeField] private List<GoalHolderConfig> _goalHolders = new();
 
-        private PawnData _pawnData;
-        private NPCData _npcData;
+        private List<NPCController> _spawnedControllers = new();
 
         protected override void OnSpawn()
         {
-            _pawnData = new();
-            _npcData = new();
+            if (_spawnedControllers.Count > 0)
+            {
+                for (int i = _spawnedControllers.Count - 1; i >= 0; i--)
+                {
+                    if (_spawnedControllers[i].Pawn.StateHolder.CompareStateValue("Is Dead", true))
+                    {
+                        GameManager.StaticInstance.NPCManager.RemoveController(_spawnedControllers[i]);
+                        _spawnedControllers[i].ResetComponent();
+                        GameManager.StaticInstance.PrefabsManager.DespawnObject(_spawnedControllers[i].gameObject, 1f);
+                        _spawnedControllers.RemoveAt(i);
+                    }
+                }
+            }
             int amount = Random.Range(_minAmount, _maxAmount + 1);
             for (int i = 0; i < amount; i++)
             {
-                _pawnData.DisplayName = $"{_faction.MemberName}";
-                _pawnData.Visual = _visuals[Random.Range(0, _visuals.Count)].DisplayName;
-                _pawnData.Faction = _faction.DisplayName;
-                _pawnData.Inventory = _inventories[Random.Range(0, _inventories.Count)].DisplayName;
-                _pawnData.StateHolder = _stateHolders[Random.Range(0, _stateHolders.Count)].DisplayName;
-                _npcData.GoalHolder = _goalHolders[Random.Range(0, _goalHolders.Count)].DisplayName;
+                if (_spawnedControllers.Count == _limitAmount)
+                {
+                    break;
+                }
                 NPCController npc = GameManager.StaticInstance.PrefabsManager.GetNPC(_spawnPoints[Random.Range(0, _spawnPoints.Count)]);
                 GameManager.StaticInstance.NPCManager.AddController(npc);
-                npc.Initialize(_pawnData, _npcData);
+                _spawnedControllers.Add(npc);
+                npc.Initialize(_faction.MemberConfigs[Random.Range(0, _faction.MemberConfigs.Count)].GetPawnData(), _faction.MemberConfigs[Random.Range(0, _faction.MemberConfigs.Count)].GetNPCData());
             }
         }
     }

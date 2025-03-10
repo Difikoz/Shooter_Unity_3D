@@ -44,6 +44,12 @@ MonoBehaviour:
     _value: 0
   - _config: {fileID: 11400000, guid: 17aa1a53652c31a43be329d67f42aff0, type: 2}
     _value: 0
-  _effectsOnStart: []
-  _effectsOnAbort: []
-  _effectsOnComplete: []
+  _effectsOnStart:
+  - _config: {fileID: 11400000, guid: 51967c90683c2c944ac7c8b4d2f66b42, type: 2}
+    _value: 1
+  _effectsOnAbort:
+  - _config: {fileID: 11400000, guid: 51967c90683c2c944ac7c8b4d2f66b42, type: 2}
+    _value: 0
+  _effectsOnComplete:
+  - _config: {fileID: 11400000, guid: 51967c90683c2c944ac7c8b4d2f66b42, type: 2}
+    _value: 0

@@ -32,5 +32,13 @@ namespace WinterUniverse
         {
             _controllers.Add(controller);
         }
+
+        public void RemoveController(NPCController controller)
+        {
+            if (_controllers.Contains(controller))
+            {
+                _controllers.Remove(controller);
+            }
+        }
     }
 }

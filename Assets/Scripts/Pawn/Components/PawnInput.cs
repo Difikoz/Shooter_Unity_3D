@@ -10,8 +10,6 @@ namespace WinterUniverse
         public Vector3 MoveDirection;
         public Vector3 LookDirection;
         public Vector3 LookPoint;
-        public bool FireInput;
-        public bool AimInput;
         public float ForwardVelocity;
         public float RightVelocity;
         public float TurnVelocity;

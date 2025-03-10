@@ -8,7 +8,6 @@ namespace WinterUniverse
         protected PawnController _pawn;
         protected WeaponItemConfig _config;
         private GameObject _model;
-        private LeftHandTarget _leftHandTarget;
 
         public virtual void Initialize(WeaponItemConfig config)
         {
@@ -19,27 +18,13 @@ namespace WinterUniverse
             }
             _config = config;
             _model = LeanPool.Spawn(_config.Model, transform);
-            _leftHandTarget = GetComponentInChildren<LeftHandTarget>();
-            if (_config.UseLeftHandIK)
-            {
-                _pawn.Animator.ToggleLeftHandIK(_leftHandTarget.transform);
-            }
-            else
-            {
-                _pawn.Animator.ToggleLeftHandIK(null);
-            }
-            _pawn.Animator.ToggleAimingIK(_config.UseAiming);
         }
 
-        public virtual bool CanFire()
+        public virtual bool CanAttack()
         {
-            if (_pawn.StateHolder.CompareStateValue("Is Dead", true) || _pawn.StateHolder.CompareStateValue("Is Perfoming Action", true))
-            {
-                return false;
-            }
-            return true;
+            return _pawn.StateHolder.CompareStateValue("Is Dead", false) && _pawn.StateHolder.CompareStateValue("Is Perfoming Action", false);
         }
 
-        public abstract void OnFire();
+        public abstract void OnAttack();
     }
 }
