@@ -10,41 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 331e42c1737e8b24c96a3c467c095b3a, type: 3}
-  m_Name: Sword
+  m_Name: P-2
   m_EditorClassIdentifier: 
-  _displayName: Sword
+  _displayName: P-2
   _description: Description
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _icon: {fileID: -8767744827606619403, guid: 76d1b102e125dd14497aab63370b0903, type: 3}
+  _icon: {fileID: 8298262469622709926, guid: 76d1b102e125dd14497aab63370b0903, type: 3}
   _itemType: 0
-  _model: {fileID: 3873096771375594778, guid: 0cd1e49991aba26488586e32810efdaa, type: 3}
+  _model: {fileID: 3873096771375594778, guid: 6ae4fd8490cd6ba4092e199fdf0283b0, type: 3}
   _playAnimationOnUse: 1
   _animationOnUse: Swap Weapon
   _stackSize: 1
   _weight: 1
   _price: 100
-  _weaponTypePrefab: {fileID: 6791268795669879921, guid: 2c73321189341f446b95f34e1b97009a, type: 3}
-  _controller: {fileID: 22100000, guid: 12d6768045e2ce449830c699ba4a5e76, type: 2}
-  _useLeftHandIK: 0
-  _useAiming: 0
-  _fireRate: 0
+  _fireRate: 300
   _minRange: 50
   _maxRange: 100
-  _force: 0
-  _spread: 0
+  _force: 250
+  _spread: 5
   _energyConsumption: 5
-  _projectilePerShot: 0
+  _projectilePerShot: 1
   _damageTypes:
   - _damage: 10
-    _type: {fileID: 11400000, guid: 1cd2526158a6e704095005d1716fbbb2, type: 2}
+    _type: {fileID: 11400000, guid: e668641681974c542834d9a2ad30a0a1, type: 2}
   - _damage: 2
-    _type: {fileID: 11400000, guid: f9bcd77dc8a7a5742928de5c880694e3, type: 2}
+    _type: {fileID: 11400000, guid: eb2712dc0316605428ea24ebb374b817, type: 2}
   _equipmentData:
     _modifiers:
     - _stat: {fileID: 11400000, guid: 0b60c487324e02e4e893fe014134f0b3, type: 2}
       _modifier:
-        _type: 0
-        _value: 10
+        _type: 1
+        _value: -5
     _ownerEffects:
     - _chance: 0.1
       _config: {fileID: 11400000, guid: 37a4541a1dd75634380038e61881c67f, type: 2}

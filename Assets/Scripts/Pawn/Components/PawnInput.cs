@@ -12,9 +12,7 @@ namespace WinterUniverse
         public Vector3 LookPoint;
         public float ForwardVelocity;
         public float RightVelocity;
-        public float TurnVelocity;
         public float FallVelocity;
-        public float LookAngle;
 
         public void Initialize()
         {

@@ -7,10 +7,11 @@ namespace WinterUniverse
     {
         private PawnController _pawn;
         private WeaponItemConfig _config;
-        private Weapon _weapon;
+        private GameObject _model;
+        private ShootPoint _shootPoint;
+        private float _lastFireTime;
 
         public WeaponItemConfig Config => _config;
-        public Weapon Weapon => _weapon;
 
         public void Initialize()
         {
@@ -23,19 +24,30 @@ namespace WinterUniverse
             {
                 _pawn.Status.RemoveStatModifiers(_config.EquipmentData.Modifiers);
             }
-            if (_weapon != null)
+            if (_model != null)
             {
-                LeanPool.Despawn(_weapon.gameObject);
-                _weapon = null;
+                LeanPool.Despawn(_model);
+                _model = null;
+                _shootPoint = null;
             }
             _config = config;
             if (_config != null)
             {
                 _pawn.Status.AddStatModifiers(_config.EquipmentData.Modifiers);
-                _weapon = LeanPool.Spawn(_config.WeaponTypePrefab, transform).GetComponent<Weapon>();
-                _weapon.Initialize(_config);
+                _model = LeanPool.Spawn(_config.Model, transform);
+                _shootPoint = GetComponentInChildren<ShootPoint>();
             }
-            _pawn.Animator.ChangeController(_config);
+        }
+
+        public bool CanAttack()
+        {
+            return Time.time > _config.FireRate / 600f + _lastFireTime && _pawn.StateHolder.CompareStateValue("Is Dead", false) && _pawn.StateHolder.CompareStateValue("Is Perfoming Action", false);
+        }
+
+        public void OnAttack()
+        {
+
+            _lastFireTime = Time.time;
         }
     }
 }

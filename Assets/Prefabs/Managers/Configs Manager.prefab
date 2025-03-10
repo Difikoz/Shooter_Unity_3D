@@ -61,7 +61,6 @@ MonoBehaviour:
   _inventories:
   - {fileID: 11400000, guid: 3af2e182bc2f1b046b57cf37528a0805, type: 2}
   _weapons:
-  - {fileID: 11400000, guid: 287f9cdd7d2c3d14d91376707eaa1f30, type: 2}
   - {fileID: 11400000, guid: 887155776086d794caf98535ad0746a3, type: 2}
   - {fileID: 11400000, guid: 9e7baadc5045b764e95043dbc174aadd, type: 2}
   _armors:

@@ -48,7 +48,6 @@ namespace WinterUniverse
             if (_player != null)
             {
                 transform.position = Vector3.Lerp(transform.position, _player.transform.position, _followSpeed * Time.deltaTime);
-                _player.Input.LookAngle = _xRot;
             }
             if (GameManager.StaticInstance.InputMode == InputMode.UI)
             {

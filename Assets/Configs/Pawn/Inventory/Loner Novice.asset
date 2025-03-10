@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayName: Loner Novice
   _stacks:
-  - _item: {fileID: 11400000, guid: 287f9cdd7d2c3d14d91376707eaa1f30, type: 2}
-    _amount: 1
   - _item: {fileID: 11400000, guid: 9e7baadc5045b764e95043dbc174aadd, type: 2}
     _amount: 1
   - _item: {fileID: 11400000, guid: 887155776086d794caf98535ad0746a3, type: 2}

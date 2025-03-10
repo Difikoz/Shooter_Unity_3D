@@ -40,9 +40,9 @@ namespace WinterUniverse
                     _angleToTarget = Vector3.SignedAngle(transform.forward, (_target.transform.position - transform.position).normalized, Vector3.up);
                 }
             }
-            if (_pawn.Equipment.WeaponSlot.Weapon != null && _pawn.StateHolder.CompareStateValue("Is Attacking", true) && _pawn.Equipment.WeaponSlot.Weapon.CanAttack())
+            if (_pawn.Equipment.WeaponSlot.Config != null && _pawn.StateHolder.CompareStateValue("Is Attacking", true) && _pawn.Equipment.WeaponSlot.CanAttack())
             {
-                _pawn.Equipment.WeaponSlot.Weapon.OnAttack();
+                _pawn.Equipment.WeaponSlot.OnAttack();
             }
         }
 

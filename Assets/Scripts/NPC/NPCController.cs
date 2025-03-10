@@ -68,18 +68,16 @@ namespace WinterUniverse
 
         public void OnUpdate()
         {
-            _pawn.Input.MoveDirection = _agent.desiredVelocity;
+            _pawn.Input.MoveDirection = _agent.desiredVelocity.normalized;
             if (_pawn.Combat.Target != null)
             {
                 _pawn.Input.LookDirection = _pawn.Combat.DirectionToTarget;
                 _pawn.Input.LookPoint = _pawn.Combat.Target.Animator.BodyPoint.position;
-                _pawn.Input.LookAngle = Vector3.SignedAngle(_pawn.Combat.DirectionToTarget, _pawn.transform.forward, _pawn.transform.right);
             }
             else
             {
-                _pawn.Input.LookDirection = _agent.desiredVelocity;
+                _pawn.Input.LookDirection = _agent.desiredVelocity.normalized;
                 _pawn.Input.LookPoint = _pawn.Animator.BodyPoint.position + _pawn.transform.forward;
-                _pawn.Input.LookAngle = 0f;
             }
             _pawn.OnUpdate();
             transform.SetPositionAndRotation(_pawn.transform.position, _pawn.transform.rotation);
@@ -188,8 +186,8 @@ namespace WinterUniverse
             {
                 if (NavMesh.SamplePosition(position, out NavMeshHit hit, i * 5f, NavMesh.AllAreas))
                 {
-                    _remainingDistance = Vector3.Distance(transform.position, _agent.destination);
                     _agent.SetDestination(hit.position);
+                    _remainingDistance = Vector3.Distance(transform.position, _agent.destination);
                     _reachedDestination = false;
                     break;
                 }
